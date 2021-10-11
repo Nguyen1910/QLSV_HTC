@@ -1,7 +1,7 @@
 ﻿
 namespace QLSV_HTC
 {
-    partial class frmSinhVien
+    partial class frmLop
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace QLSV_HTC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLop));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);

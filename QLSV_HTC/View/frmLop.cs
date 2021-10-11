@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace QLSV_HTC
 {
-    public partial class frmSinhVien : DevExpress.XtraEditors.XtraForm
+    public partial class frmLop : DevExpress.XtraEditors.XtraForm
     {
-        public frmSinhVien()
+        public frmLop()
         {
             InitializeComponent();
         }
