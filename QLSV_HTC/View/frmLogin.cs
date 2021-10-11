@@ -48,7 +48,7 @@ namespace QLSV_HTC
             conn_publisher.Close();
             Program.bds_dspm.DataSource = dataTable;
             cbSubscribes.DataSource = Program.bds_dspm;
-            cbSubscribes.DisplayMember = "TENCN";
+            cbSubscribes.DisplayMember = "TENKHOA";
             cbSubscribes.ValueMember = "TENSERVER";
         }
 
@@ -83,7 +83,6 @@ namespace QLSV_HTC
             else Program.m_hoTen = Program.reader.GetString(1);
             Program.m_group = Program.reader.GetString(2);
             Program.reader.Close();
-
 
             Program.conn.Close();
 
