@@ -36,6 +36,13 @@
             </ControlSetting>
           </ControlSettings>
         </ColumnUISetting>
+        <ColumnUISetting Name="rowguid">
+          <ControlSettings>
+            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+              <BindableControlInfo Name="TextEdit" Type="DevExpress.XtraEditors.TextEdit" AssemblyName="DevExpress.XtraEditors.v19.2" />
+            </ControlSetting>
+          </ControlSettings>
+        </ColumnUISetting>
       </ColumnUISettings>
     </TableUISetting>
   </TableUISettings>

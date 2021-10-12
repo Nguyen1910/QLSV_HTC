@@ -99,5 +99,22 @@ namespace QLSV_HTC
             Program.conn.Close();
             return dt;
         }
+
+        public static int ExecSqlNonQuery(String cmd)
+        {
+            SqlCommand Sqlcmd = new SqlCommand(cmd, conn);
+            Sqlcmd.CommandType = CommandType.Text;
+            Sqlcmd.CommandTimeout = 600;
+            if (conn.State == ConnectionState.Closed) conn.Open();
+            try
+            {
+                Sqlcmd.ExecuteNonQuery(); conn.Close();
+                return 0;
+            }
+            catch(SqlException ex)
+            {
+                return ex.State;
+            }
+        }
     }
 }

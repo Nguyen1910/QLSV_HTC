@@ -68,6 +68,7 @@ namespace QLSV_HTC
             this.txtMaKhoa = new System.Windows.Forms.TextBox();
             this.bdsSinhVien = new System.Windows.Forms.BindingSource(this.components);
             this.SINHVIENTableAdapter = new QLSV_HTC.DSTableAdapters.SINHVIENTableAdapter();
+            this.gbTTLop = new System.Windows.Forms.GroupBox();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
             kHOAHOCLabel = new System.Windows.Forms.Label();
@@ -80,12 +81,13 @@ namespace QLSV_HTC
             ((System.ComponentModel.ISupportInitialize)(this.gcLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSinhVien)).BeginInit();
+            this.gbTTLop.SuspendLayout();
             this.SuspendLayout();
             // 
             // mALOPLabel
             // 
             mALOPLabel.AutoSize = true;
-            mALOPLabel.Location = new System.Drawing.Point(42, 382);
+            mALOPLabel.Location = new System.Drawing.Point(63, 45);
             mALOPLabel.Name = "mALOPLabel";
             mALOPLabel.Size = new System.Drawing.Size(52, 17);
             mALOPLabel.TabIndex = 10;
@@ -94,7 +96,7 @@ namespace QLSV_HTC
             // tENLOPLabel
             // 
             tENLOPLabel.AutoSize = true;
-            tENLOPLabel.Location = new System.Drawing.Point(427, 382);
+            tENLOPLabel.Location = new System.Drawing.Point(448, 45);
             tENLOPLabel.Name = "tENLOPLabel";
             tENLOPLabel.Size = new System.Drawing.Size(58, 17);
             tENLOPLabel.TabIndex = 11;
@@ -103,7 +105,7 @@ namespace QLSV_HTC
             // kHOAHOCLabel
             // 
             kHOAHOCLabel.AutoSize = true;
-            kHOAHOCLabel.Location = new System.Drawing.Point(42, 438);
+            kHOAHOCLabel.Location = new System.Drawing.Point(63, 101);
             kHOAHOCLabel.Name = "kHOAHOCLabel";
             kHOAHOCLabel.Size = new System.Drawing.Size(71, 17);
             kHOAHOCLabel.TabIndex = 12;
@@ -112,7 +114,7 @@ namespace QLSV_HTC
             // mAKHOALabel
             // 
             mAKHOALabel.AutoSize = true;
-            mAKHOALabel.Location = new System.Drawing.Point(436, 438);
+            mAKHOALabel.Location = new System.Drawing.Point(457, 101);
             mAKHOALabel.Name = "mAKHOALabel";
             mAKHOALabel.Size = new System.Drawing.Size(44, 17);
             mAKHOALabel.TabIndex = 13;
@@ -162,6 +164,7 @@ namespace QLSV_HTC
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnXoa
             // 
@@ -170,6 +173,7 @@ namespace QLSV_HTC
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnSua
             // 
@@ -178,6 +182,7 @@ namespace QLSV_HTC
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
             this.btnSua.Name = "btnSua";
+            this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
             // 
             // btnPhucHoi
             // 
@@ -185,6 +190,7 @@ namespace QLSV_HTC
             this.btnPhucHoi.Id = 3;
             this.btnPhucHoi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPhucHoi.ImageOptions.SvgImage")));
             this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoi_ItemClick);
             // 
             // btnGhi
             // 
@@ -193,6 +199,7 @@ namespace QLSV_HTC
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
+            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
             // btnHuy
             // 
@@ -200,6 +207,7 @@ namespace QLSV_HTC
             this.btnHuy.Id = 5;
             this.btnHuy.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHuy.ImageOptions.SvgImage")));
             this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
             // 
             // btnLamMoi
             // 
@@ -208,6 +216,7 @@ namespace QLSV_HTC
             this.btnLamMoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.Image")));
             this.btnLamMoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.LargeImage")));
             this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLamMoi_ItemClick);
             // 
             // bar3
             // 
@@ -233,7 +242,7 @@ namespace QLSV_HTC
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 581);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 504);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(820, 20);
             // 
@@ -243,7 +252,7 @@ namespace QLSV_HTC
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 551);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 474);
             // 
             // barDockControlRight
             // 
@@ -251,7 +260,7 @@ namespace QLSV_HTC
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(820, 30);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 551);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 474);
             // 
             // panelControl1
             // 
@@ -260,7 +269,7 @@ namespace QLSV_HTC
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 30);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(820, 75);
+            this.panelControl1.Size = new System.Drawing.Size(820, 69);
             this.panelControl1.TabIndex = 5;
             // 
             // cmbKhoa
@@ -306,7 +315,7 @@ namespace QLSV_HTC
             // 
             this.gcLop.DataSource = this.bdsLop;
             this.gcLop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gcLop.Location = new System.Drawing.Point(0, 105);
+            this.gcLop.Location = new System.Drawing.Point(0, 99);
             this.gcLop.MainView = this.gridView1;
             this.gcLop.MenuManager = this.barManager1;
             this.gcLop.Name = "gcLop";
@@ -364,7 +373,7 @@ namespace QLSV_HTC
             // txtMaLop
             // 
             this.txtMaLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsLop, "MALOP", true));
-            this.txtMaLop.Location = new System.Drawing.Point(133, 376);
+            this.txtMaLop.Location = new System.Drawing.Point(154, 39);
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.Size = new System.Drawing.Size(197, 23);
             this.txtMaLop.TabIndex = 11;
@@ -372,7 +381,7 @@ namespace QLSV_HTC
             // txtTenLop
             // 
             this.txtTenLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsLop, "TENLOP", true));
-            this.txtTenLop.Location = new System.Drawing.Point(518, 376);
+            this.txtTenLop.Location = new System.Drawing.Point(539, 39);
             this.txtTenLop.Name = "txtTenLop";
             this.txtTenLop.Size = new System.Drawing.Size(189, 23);
             this.txtTenLop.TabIndex = 12;
@@ -380,7 +389,7 @@ namespace QLSV_HTC
             // txtKhoaHoc
             // 
             this.txtKhoaHoc.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsLop, "KHOAHOC", true));
-            this.txtKhoaHoc.Location = new System.Drawing.Point(133, 435);
+            this.txtKhoaHoc.Location = new System.Drawing.Point(154, 98);
             this.txtKhoaHoc.Name = "txtKhoaHoc";
             this.txtKhoaHoc.Size = new System.Drawing.Size(197, 23);
             this.txtKhoaHoc.TabIndex = 13;
@@ -389,7 +398,7 @@ namespace QLSV_HTC
             // 
             this.txtMaKhoa.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsLop, "MAKHOA", true));
             this.txtMaKhoa.Enabled = false;
-            this.txtMaKhoa.Location = new System.Drawing.Point(518, 435);
+            this.txtMaKhoa.Location = new System.Drawing.Point(539, 98);
             this.txtMaKhoa.Name = "txtMaKhoa";
             this.txtMaKhoa.Size = new System.Drawing.Size(189, 23);
             this.txtMaKhoa.TabIndex = 14;
@@ -403,19 +412,31 @@ namespace QLSV_HTC
             // 
             this.SINHVIENTableAdapter.ClearBeforeFill = true;
             // 
+            // gbTTLop
+            // 
+            this.gbTTLop.Controls.Add(this.txtTenLop);
+            this.gbTTLop.Controls.Add(mAKHOALabel);
+            this.gbTTLop.Controls.Add(this.txtMaLop);
+            this.gbTTLop.Controls.Add(this.txtMaKhoa);
+            this.gbTTLop.Controls.Add(mALOPLabel);
+            this.gbTTLop.Controls.Add(kHOAHOCLabel);
+            this.gbTTLop.Controls.Add(tENLOPLabel);
+            this.gbTTLop.Controls.Add(this.txtKhoaHoc);
+            this.gbTTLop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbTTLop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.gbTTLop.Location = new System.Drawing.Point(0, 319);
+            this.gbTTLop.Name = "gbTTLop";
+            this.gbTTLop.Size = new System.Drawing.Size(820, 185);
+            this.gbTTLop.TabIndex = 19;
+            this.gbTTLop.TabStop = false;
+            this.gbTTLop.Text = "Thông tin lớp";
+            // 
             // frmLop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(820, 601);
-            this.Controls.Add(mAKHOALabel);
-            this.Controls.Add(this.txtMaKhoa);
-            this.Controls.Add(kHOAHOCLabel);
-            this.Controls.Add(this.txtKhoaHoc);
-            this.Controls.Add(tENLOPLabel);
-            this.Controls.Add(this.txtTenLop);
-            this.Controls.Add(mALOPLabel);
-            this.Controls.Add(this.txtMaLop);
+            this.ClientSize = new System.Drawing.Size(820, 524);
+            this.Controls.Add(this.gbTTLop);
             this.Controls.Add(this.gcLop);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
@@ -435,6 +456,8 @@ namespace QLSV_HTC
             ((System.ComponentModel.ISupportInitialize)(this.gcLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSinhVien)).EndInit();
+            this.gbTTLop.ResumeLayout(false);
+            this.gbTTLop.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,5 +497,6 @@ namespace QLSV_HTC
         private System.Windows.Forms.TextBox txtMaLop;
         private System.Windows.Forms.BindingSource bdsSinhVien;
         private DSTableAdapters.SINHVIENTableAdapter SINHVIENTableAdapter;
+        private System.Windows.Forms.GroupBox gbTTLop;
     }
 }

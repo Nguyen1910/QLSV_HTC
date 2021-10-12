@@ -68,7 +68,6 @@ namespace QLSV_HTC
             Program.passwordDN = Program.password;
             String cmd = "exec SP_DANGNHAP '"+Program.m_loginDN+"'";
 
-
             Program.reader = Program.ExecSqlDataReader(cmd);
             if (Program.reader == null) return;
             Program.reader.Read();
