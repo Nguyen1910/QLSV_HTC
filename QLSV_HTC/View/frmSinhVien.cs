@@ -16,5 +16,25 @@ namespace QLSV_HTC.View
         {
             InitializeComponent();
         }
+
+        private void cmbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lOPBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.bdsLop.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.dS);
+
+        }
+
+        private void frmSinhVien_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dS.LOP' table. You can move, or remove it, as needed.
+            this.LOPTableAdapter.Fill(this.dS.LOP);
+
+        }
     }
 }

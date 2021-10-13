@@ -40,7 +40,7 @@ namespace QLSV_HTC
             this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
 
             makhoa = ((DataRowView)bdsLop[0])["MAKHOA"].ToString();
-
+            Program.bds_dspm.Filter = "TENKHOA LIKE 'KHOA%'";
             cmbKhoa.DataSource = Program.bds_dspm;
             cmbKhoa.DisplayMember = "TENKHOA";
             cmbKhoa.ValueMember = "TENSERVER";
@@ -58,7 +58,7 @@ namespace QLSV_HTC
                 cmbKhoa.Enabled = false;
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnLamMoi.Enabled = btnPhucHoi.Enabled = false;
             }
-            gbTTLop.Enabled = true;
+            gbTTLop.Enabled = false;
             btnHuy.Enabled = false;
         }
 
@@ -137,6 +137,7 @@ namespace QLSV_HTC
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             flag = "btnSua";
+            txtMaLop.Enabled = false;
             vitri = bdsLop.Position;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = true;
@@ -182,10 +183,45 @@ namespace QLSV_HTC
             }
             try
             {
+                String cmd = "EXEC SP_CHECKID  @Code ='" + txtMaLop.Text + "' , @Type = 'MALOP'";
+                switch (flag)
+                {
+                    case "btnThem":
+                        {
+                            if (Program.ExecSqlNonQuery(cmd) == 0)
+                            {
+                                bdsLop.EndEdit();
+                                bdsLop.ResetCurrentItem();
+                                this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
+                                this.LOPTableAdapter.Update(this.DS.LOP);
+                            }
+                            else
+                            {
+                                bdsLop.EndEdit();
+                                frmLop_Load(sender, e);
+                                bdsLop.Position = vitri;
+                                MessageBox.Show("Lớp đã tồi tại", "", MessageBoxButtons.OK);
+                            }
+                            break;
+                        }
+                    case "btnSua":
+                        {
+                            bdsLop.EndEdit();
+                            bdsLop.ResetCurrentItem();
+                            this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
+                            this.LOPTableAdapter.Update(this.DS.LOP);
+                            txtMaLop.Enabled = true;
+                            break;
+                        }
+                }
+              
+                /*if(Program.ExecSqlNonQuery(cmd) == 0)
+                {
                     bdsLop.EndEdit();
                     bdsLop.ResetCurrentItem();
                     this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
                     this.LOPTableAdapter.Update(this.DS.LOP);
+                } */
             }
             catch(Exception ex)
             {
@@ -204,8 +240,9 @@ namespace QLSV_HTC
             bdsLop.Position = vitri;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
-            gbTTLop.Enabled = true;
+            gbTTLop.Enabled = false;
             gcLop.Enabled = true;
+            txtMaLop.Enabled = true;
         }
     }
 }
