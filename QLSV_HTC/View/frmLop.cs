@@ -103,7 +103,6 @@ namespace QLSV_HTC
             gbTTLop.Enabled = true;
             gcLop.Enabled = false;
             cmbKhoa.Enabled = false;
-            
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -143,6 +142,7 @@ namespace QLSV_HTC
             btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = true;
             gbTTLop.Enabled = true;
             gcLop.Enabled = false;
+            cmbKhoa.Enabled = false;
         }
 
         private void btnLamMoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -214,16 +214,8 @@ namespace QLSV_HTC
                             break;
                         }
                 }
-              
-                /*if(Program.ExecSqlNonQuery(cmd) == 0)
-                {
-                    bdsLop.EndEdit();
-                    bdsLop.ResetCurrentItem();
-                    this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
-                    this.LOPTableAdapter.Update(this.DS.LOP);
-                } */
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi ghi lớp " + ex.Message, "", MessageBoxButtons.OK);
                 return;
@@ -232,6 +224,14 @@ namespace QLSV_HTC
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
+            if(Program.m_group == "PGV")
+            {
+                cmbKhoa.Enabled = true;
+            }
+            else
+            {
+                cmbKhoa.Enabled = false;
+            }
         }
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -243,6 +243,14 @@ namespace QLSV_HTC
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
             txtMaLop.Enabled = true;
+            if (Program.m_group == "PGV")
+            {
+                cmbKhoa.Enabled = true;
+            }
+            else
+            {
+                cmbKhoa.Enabled = false;
+            }
         }
     }
 }
