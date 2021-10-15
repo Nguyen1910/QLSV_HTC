@@ -107,7 +107,7 @@ namespace QLSV_HTC
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Int32 maLop = 0;
+            String maLop = "";
             if(bdsSinhVien.Count > 0)
             {
                 MessageBox.Show("Không thể xóa lớp này vì đã có sinh viên", "", MessageBoxButtons.OK);
@@ -117,7 +117,7 @@ namespace QLSV_HTC
             {
                 try
                 {
-                    maLop = int.Parse(((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString());
+                    maLop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
                     bdsLop.RemoveCurrent();
                     this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
                     this.LOPTableAdapter.Update(this.DS.LOP);

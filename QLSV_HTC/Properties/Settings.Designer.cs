@@ -32,5 +32,15 @@ namespace QLSV_HTC.Properties {
                 return ((string)(this["QLSV_HTCConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-ARJSH40\\SERVER2;Initial Catalog=QLSV_HTC;User ID=TH")]
+        public string QLSV_HTCConnectionString1 {
+            get {
+                return ((string)(this["QLSV_HTCConnectionString1"]));
+            }
+        }
     }
 }

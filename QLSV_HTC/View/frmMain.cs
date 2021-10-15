@@ -122,7 +122,7 @@ namespace QLSV_HTC
             if (f != null) f.Activate();
             else
             {
-                Form frm = new Form();
+                frmHocPhi frm = new frmHocPhi();
                 frm.MdiParent = this;
                 frm.Show();
             }

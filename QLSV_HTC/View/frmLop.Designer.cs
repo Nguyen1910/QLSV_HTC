@@ -57,7 +57,7 @@ namespace QLSV_HTC
             this.LOPTableAdapter = new QLSV_HTC.DSTableAdapters.LOPTableAdapter();
             this.tableAdapterManager = new QLSV_HTC.DSTableAdapters.TableAdapterManager();
             this.gcLop = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvLop = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENLOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKHOAHOC = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -81,7 +81,7 @@ namespace QLSV_HTC
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcLop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSinhVien)).BeginInit();
             this.gbTTLop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dANGKYBindingSource)).BeginInit();
@@ -324,23 +324,24 @@ namespace QLSV_HTC
             this.gcLop.DataSource = this.bdsLop;
             this.gcLop.Dock = System.Windows.Forms.DockStyle.Top;
             this.gcLop.Location = new System.Drawing.Point(0, 99);
-            this.gcLop.MainView = this.gridView1;
+            this.gcLop.MainView = this.gvLop;
             this.gcLop.MenuManager = this.barManager1;
             this.gcLop.Name = "gcLop";
             this.gcLop.Size = new System.Drawing.Size(982, 220);
             this.gcLop.TabIndex = 6;
             this.gcLop.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gvLop});
             // 
-            // gridView1
+            // gvLop
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvLop.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMALOP,
             this.colTENLOP,
             this.colKHOAHOC,
             this.colMAKHOA});
-            this.gridView1.GridControl = this.gcLop;
-            this.gridView1.Name = "gridView1";
+            this.gvLop.GridControl = this.gcLop;
+            this.gvLop.Name = "gvLop";
+            this.gvLop.OptionsBehavior.ReadOnly = true;
             // 
             // colMALOP
             // 
@@ -471,7 +472,7 @@ namespace QLSV_HTC
             ((System.ComponentModel.ISupportInitialize)(this.DS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcLop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSinhVien)).EndInit();
             this.gbTTLop.ResumeLayout(false);
             this.gbTTLop.PerformLayout();
@@ -504,7 +505,7 @@ namespace QLSV_HTC
         private DSTableAdapters.LOPTableAdapter LOPTableAdapter;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraGrid.GridControl gcLop;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvLop;
         private DevExpress.XtraGrid.Columns.GridColumn colMALOP;
         private DevExpress.XtraGrid.Columns.GridColumn colTENLOP;
         private DevExpress.XtraGrid.Columns.GridColumn colKHOAHOC;

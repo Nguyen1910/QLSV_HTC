@@ -62,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DSHP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSHP.xsd</DependentUpon>
+    </Compile>
     <Compile Include="View\frmGiangVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +163,17 @@
     </None>
     <None Include="DS.xss">
       <DependentUpon>DS.xsd</DependentUpon>
+    </None>
+    <None Include="DSHP.xsc">
+      <DependentUpon>DSHP.xsd</DependentUpon>
+    </None>
+    <None Include="DSHP.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSHP.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSHP.xss">
+      <DependentUpon>DSHP.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

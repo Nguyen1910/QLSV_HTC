@@ -363,6 +363,7 @@ namespace QLSV_HTC.View
             this.colMAKHOA});
             this.gridView1.GridControl = this.gcLop;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colMALOP
             // 
