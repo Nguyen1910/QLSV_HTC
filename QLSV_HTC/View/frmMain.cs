@@ -115,5 +115,17 @@ namespace QLSV_HTC
                 frm.Show();
             }
         }
+
+        private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                Form frm = new Form();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
     }
 }

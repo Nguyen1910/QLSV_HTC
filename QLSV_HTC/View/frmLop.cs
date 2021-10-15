@@ -198,7 +198,8 @@ namespace QLSV_HTC
                             else
                             {
                                 bdsLop.EndEdit();
-                                frmLop_Load(sender, e);
+                                this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
+                                this.LOPTableAdapter.Fill(this.DS.LOP);
                                 bdsLop.Position = vitri;
                                 MessageBox.Show("Lớp đã tồi tại", "", MessageBoxButtons.OK);
                             }

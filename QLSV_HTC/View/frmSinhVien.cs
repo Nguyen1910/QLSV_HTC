@@ -45,6 +45,9 @@ namespace QLSV_HTC.View
                 // TODO: This line of code loads data into the 'DS.SINHVIEN' table. You can move, or remove it, as needed.
                 this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
                 this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
+                // TODO: This line of code loads data into the 'dS.LOP' table. You can move, or remove it, as needed.
+                this.DANGKYTableAdapter.Connection.ConnectionString = Program.connectStr;
+                this.DANGKYTableAdapter.Fill(this.DS.DANGKY);
 
                 makhoa = ((DataRowView)bdsLop[0])["MAKHOA"].ToString();
             }
@@ -195,7 +198,8 @@ namespace QLSV_HTC.View
                             else
                             {
                                 bdsLop.EndEdit();
-                                frmSinhVien_Load(sender, e);
+                                this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
+                                this.LOPTableAdapter.Fill(this.DS.LOP);
                                 bdsLop.Position = vitriLop;
                                 MessageBox.Show("Lớp đã tồi tại", "", MessageBoxButtons.OK);
                             }
@@ -277,7 +281,6 @@ namespace QLSV_HTC.View
             cmbKhoa.Enabled = false;
             btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = false;
             btnPhucHoiSV.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled = true;
-            dgvSV.Columns[6].ReadOnly = true;
         }
 
         private void btnXoaSV_Click(object sender, EventArgs e)
@@ -317,7 +320,7 @@ namespace QLSV_HTC.View
 
         private void btnSuaSV_Click(object sender, EventArgs e)
         {
-            if (dgvSV.RowCount == 0) return;
+            if (bdsSV.Count == 0) return;
             flag = "btnSuaSV";
             vitriLop = bdsLop.Position;
             vitriSV = bdsSV.Position;
@@ -327,8 +330,8 @@ namespace QLSV_HTC.View
             cmbKhoa.Enabled = false;
             btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = false;
             btnPhucHoiSV.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled = true;
-            dgvSV.Columns[0].ReadOnly = true;
-            dgvSV.Columns[6].ReadOnly = true;
+            colMASV.OptionsColumn.ReadOnly = true;
+            colMALOP1.OptionsColumn.ReadOnly = true;
         }
 
         private void btnPhucHoiSV_Click(object sender, EventArgs e)
@@ -341,7 +344,7 @@ namespace QLSV_HTC.View
             maSV = ((DataRowView)bdsSV[this.bdsSV.Position])["MASV"].ToString();
             try
             { 
-                String cmd = "EXEC SP_CHECKID  @Code ='" + maSV + "' , @Type = 'MALOP'";
+                String cmd = "EXEC SP_CHECKID  @Code ='" + maSV + "' , @Type = 'MASV'";
                 switch (flag)
                 {
                     case "btnThemSV":
@@ -357,10 +360,11 @@ namespace QLSV_HTC.View
                             else
                             {
                                 bdsSV.EndEdit();
-                                frmSinhVien_Load(sender, e);
+                                this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
+                                this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
                                 bdsLop.Position = vitriLop;
                                 bdsSV.Position = vitriSV;
-                                MessageBox.Show("Lớp đã tồi tại", "", MessageBoxButtons.OK);
+                                MessageBox.Show("Sinh viên đã tồi tại", "", MessageBoxButtons.OK);
                             }
                             break;
                         }
@@ -370,7 +374,6 @@ namespace QLSV_HTC.View
                             bdsLop.ResetCurrentItem();
                             this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
                             this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
-                            dgvSV.Columns[0].ReadOnly = false;
                             break;
                         }
                 }
@@ -386,6 +389,8 @@ namespace QLSV_HTC.View
             gcLop.Enabled = true;
             btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = true;
             btnPhucHoiSV.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled = false;
+            colMASV.OptionsColumn.ReadOnly = false;
+            colMALOP1.OptionsColumn.ReadOnly = false;
             if (Program.m_group == "PGV")
             {
                 cmbKhoa.Enabled = true;
@@ -416,6 +421,8 @@ namespace QLSV_HTC.View
             }
             btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = true;
             btnPhucHoi.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled =  false;
+            colMASV.OptionsColumn.ReadOnly = false;
+            colMALOP1.OptionsColumn.ReadOnly = false;
         }
 
         private void btnLamMoiSV_Click(object sender, EventArgs e)

@@ -197,6 +197,7 @@ namespace QLSV_HTC
             this.barButtonItem11.Id = 35;
             this.barButtonItem11.ImageOptions.LargeImageIndex = 20;
             this.barButtonItem11.Name = "barButtonItem11";
+            this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
             // 
             // Icon
             // 
