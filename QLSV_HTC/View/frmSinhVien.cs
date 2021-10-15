@@ -282,7 +282,7 @@ namespace QLSV_HTC.View
 
         private void btnXoaSV_Click(object sender, EventArgs e)
         {
-            if (bdsLop.Count == 0) return;
+            if (bdsSV.Count == 0) return;
             vitriSV = bdsSV.Position;
             if (bdsDangKy.Count > 0)
             {
@@ -337,7 +337,7 @@ namespace QLSV_HTC.View
         }
 
         private void btnGhiSV_Click(object sender, EventArgs e)
-        {
+        { 
             maSV = ((DataRowView)bdsSV[this.bdsSV.Position])["MASV"].ToString();
             try
             { 
@@ -352,6 +352,7 @@ namespace QLSV_HTC.View
                                 bdsSV.ResetCurrentItem();
                                 this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
                                 this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
+                                MessageBox.Show("Thêm thành công", "", MessageBoxButtons.OK);
                             }
                             else
                             {
@@ -367,8 +368,8 @@ namespace QLSV_HTC.View
                         {
                             bdsLop.EndEdit();
                             bdsLop.ResetCurrentItem();
-                            this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
-                            this.LOPTableAdapter.Update(this.DS.LOP);
+                            this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
+                            this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
                             dgvSV.Columns[0].ReadOnly = false;
                             break;
                         }
@@ -376,13 +377,15 @@ namespace QLSV_HTC.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi ghi lớp " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi ghi sinh viên " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
+            btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = true;
+            btnPhucHoiSV.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled = false;
             if (Program.m_group == "PGV")
             {
                 cmbKhoa.Enabled = true;

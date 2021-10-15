@@ -591,10 +591,13 @@ namespace QLSV_HTC.View
             // dataGridViewCheckBoxColumn1
             // 
             this.dataGridViewCheckBoxColumn1.DataPropertyName = "PHAI";
+            this.dataGridViewCheckBoxColumn1.FalseValue = "false";
             this.dataGridViewCheckBoxColumn1.HeaderText = "PHAI";
+            this.dataGridViewCheckBoxColumn1.IndeterminateValue = "false";
             this.dataGridViewCheckBoxColumn1.MinimumWidth = 6;
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCheckBoxColumn1.TrueValue = "true";
             this.dataGridViewCheckBoxColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn4
@@ -624,11 +627,12 @@ namespace QLSV_HTC.View
             // dataGridViewCheckBoxColumn2
             // 
             this.dataGridViewCheckBoxColumn2.DataPropertyName = "DANGHIHOC";
-            this.dataGridViewCheckBoxColumn2.FalseValue = "";
+            this.dataGridViewCheckBoxColumn2.FalseValue = "false";
             this.dataGridViewCheckBoxColumn2.HeaderText = "DANGHIHOC";
+            this.dataGridViewCheckBoxColumn2.IndeterminateValue = "false";
             this.dataGridViewCheckBoxColumn2.MinimumWidth = 6;
             this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-            this.dataGridViewCheckBoxColumn2.TrueValue = "";
+            this.dataGridViewCheckBoxColumn2.TrueValue = "true";
             this.dataGridViewCheckBoxColumn2.Width = 125;
             // 
             // dataGridViewTextBoxColumn7
