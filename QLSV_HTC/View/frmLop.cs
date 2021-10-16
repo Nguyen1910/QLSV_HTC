@@ -211,6 +211,7 @@ namespace QLSV_HTC
                             bdsLop.ResetCurrentItem();
                             this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
                             this.LOPTableAdapter.Update(this.DS.LOP);
+                            bdsLop.Position = vitri;
                             txtMaLop.Enabled = true;
                             break;
                         }
@@ -221,7 +222,7 @@ namespace QLSV_HTC
                 MessageBox.Show("Lỗi ghi lớp " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
-            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = btnHuy.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
@@ -237,10 +238,11 @@ namespace QLSV_HTC
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmLop_Load(sender, e);
+            this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
+            this.LOPTableAdapter.Fill(this.DS.LOP);
             bdsLop.Position = vitri;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
-            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
             txtMaLop.Enabled = true;

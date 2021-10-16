@@ -127,5 +127,24 @@ namespace QLSV_HTC
                 frm.Show();
             }
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            if(Program.m_group == "PKT")
+            {
+                this.bbtnDKLopTC.Enabled = false;
+                this.bbtnNhapDiem.Enabled = false;
+                this.bbtnDongHocPhi.Enabled = true;
+                this.rbDanhMuc.Visible = false;
+            }
+            else if(Program.m_group == "SV")
+            {
+                this.bbtnDongHocPhi.Enabled = false;
+            }
+            else
+            {
+                this.bbtnDongHocPhi.Enabled = false;
+            }
+        }
     }
 }

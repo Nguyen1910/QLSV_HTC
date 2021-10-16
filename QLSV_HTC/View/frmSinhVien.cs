@@ -83,26 +83,28 @@ namespace QLSV_HTC.View
             if (Program.m_group == "PGV")
             {
                 cmbKhoa.Enabled = true;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnLamMoi.Enabled = btnPhucHoi.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
+                btnGhi.Enabled  = btnPhucHoi.Enabled = btnHuy.Enabled =false;
             }
             else if (Program.m_group == "KHOA")
             {
                 cmbKhoa.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnLamMoi.Enabled = btnPhucHoi.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
+                btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = false;
             }
             else if (Program.m_group == "SV")
             {
                 cmbKhoa.Enabled = false;
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnLamMoi.Enabled = btnPhucHoi.Enabled = false;
+                contextMenuStrip1.Enabled = false;
             }
             gbTTLop.Enabled = false;
-            btnHuy.Enabled = false;
-
             btnGhiSV.Enabled = btnHuySV.Enabled = btnPhucHoiSV.Enabled = false;
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (bdsLop.Count == 0) return;
             flag = "btnThem";
             vitriLop = bdsLop.Position;
             bdsLop.AddNew();
@@ -117,7 +119,8 @@ namespace QLSV_HTC.View
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Int32 maLop = 0;
+            if (bdsLop.Count == 0) return;
+            String maLop = "";
             if (bdsSV.Count > 0)
             {
                 MessageBox.Show("Không thể xóa lớp này vì đã có sinh viên", "", MessageBoxButtons.OK);
@@ -127,7 +130,7 @@ namespace QLSV_HTC.View
             {
                 try
                 {
-                    maLop = int.Parse(((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString());
+                    maLop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
                     bdsLop.RemoveCurrent();
                     this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
                     this.LOPTableAdapter.Update(this.DS.LOP);
@@ -222,7 +225,7 @@ namespace QLSV_HTC.View
                 return;
             }
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
-            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
             contextMenuStrip1.Enabled = true;
@@ -241,7 +244,7 @@ namespace QLSV_HTC.View
             frmSinhVien_Load(sender, e);
             bdsLop.Position = vitriLop;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
-            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
             txtMaLop.Enabled = true;
@@ -260,7 +263,7 @@ namespace QLSV_HTC.View
         {
             try
             {
-                this.LOPTableAdapter.Fill(this.DS.LOP);
+                frmSinhVien_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -304,6 +307,9 @@ namespace QLSV_HTC.View
                 try
                 {
                     bdsSV.RemoveCurrent();
+                    this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
+                    this.LOPTableAdapter.Update(this.DS.LOP);
+                    bdsLop.Position = vitriLop;
                     this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
                     this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
                 }
@@ -312,10 +318,11 @@ namespace QLSV_HTC.View
                     MessageBox.Show("Lỗi xóa lớp. Bạn hãy xóa lại " + ex.Message, "", MessageBoxButtons.OK);
                     this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
                     bdsSV.Position = vitriSV;
+                    bdsLop.Position = vitriLop;
                     return;
                 }
             }
-            if (bdsLop.Count == 0) btnXoa.Enabled = false;
+            if (bdsSV.Count == 0) btnXoaSV.Enabled = false;
         }
 
         private void btnSuaSV_Click(object sender, EventArgs e)
@@ -330,7 +337,6 @@ namespace QLSV_HTC.View
             cmbKhoa.Enabled = false;
             btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = false;
             btnPhucHoiSV.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled = true;
-            colMASV.OptionsColumn.ReadOnly = true;
             colMALOP1.OptionsColumn.ReadOnly = true;
         }
 
@@ -353,6 +359,9 @@ namespace QLSV_HTC.View
                             {
                                 bdsSV.EndEdit();
                                 bdsSV.ResetCurrentItem();
+                                this.LOPTableAdapter.Connection.ConnectionString = Program.connectStr;
+                                this.LOPTableAdapter.Update(this.DS.LOP);
+                                bdsLop.Position = vitriLop;
                                 this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
                                 this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
                                 MessageBox.Show("Thêm thành công", "", MessageBoxButtons.OK);
@@ -384,12 +393,11 @@ namespace QLSV_HTC.View
                 return;
             }
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
-            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
             btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = true;
             btnPhucHoiSV.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled = false;
-            colMASV.OptionsColumn.ReadOnly = false;
             colMALOP1.OptionsColumn.ReadOnly = false;
             if (Program.m_group == "PGV")
             {
@@ -407,7 +415,7 @@ namespace QLSV_HTC.View
             bdsLop.Position = vitriLop;
             bdsSV.Position = vitriSV;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = true;
-            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled  = btnHuy.Enabled = false;
             gbTTLop.Enabled = false;
             gcLop.Enabled = true;
             txtMaLop.Enabled = true;
@@ -421,7 +429,6 @@ namespace QLSV_HTC.View
             }
             btnThemSV.Enabled = btnXoaSV.Enabled = btnSuaSV.Enabled = btnLamMoiSV.Enabled = true;
             btnPhucHoi.Enabled = btnGhiSV.Enabled = btnHuySV.Enabled =  false;
-            colMASV.OptionsColumn.ReadOnly = false;
             colMALOP1.OptionsColumn.ReadOnly = false;
         }
 
@@ -429,6 +436,7 @@ namespace QLSV_HTC.View
         {
             try
             {
+                this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
                 this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
             }
             catch (Exception ex)

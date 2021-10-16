@@ -41,14 +41,14 @@ namespace QLSV_HTC
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.btnGiangVien = new DevExpress.XtraBars.BarButtonItem();
             this.btnSinhVien = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnDKLopTC = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnNhapDiem = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
             this.Icon = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -91,9 +91,9 @@ namespace QLSV_HTC
             this.barButtonItem4,
             this.btnGiangVien,
             this.btnSinhVien,
-            this.barButtonItem9,
-            this.barButtonItem10,
-            this.barButtonItem11});
+            this.bbtnDKLopTC,
+            this.bbtnNhapDiem,
+            this.bbtnDongHocPhi});
             this.ribbon.LargeImages = this.Icon;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -101,7 +101,7 @@ namespace QLSV_HTC
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
-            this.ribbonPage2,
+            this.rbDanhMuc,
             this.ribbonPage3,
             this.ribbonPage4});
             this.ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -177,27 +177,27 @@ namespace QLSV_HTC
             this.btnSinhVien.Name = "btnSinhVien";
             this.btnSinhVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSinhVien_ItemClick);
             // 
-            // barButtonItem9
+            // bbtnDKLopTC
             // 
-            this.barButtonItem9.Caption = "Đăng Ký Tín Chỉ";
-            this.barButtonItem9.Id = 33;
-            this.barButtonItem9.ImageOptions.LargeImageIndex = 21;
-            this.barButtonItem9.Name = "barButtonItem9";
+            this.bbtnDKLopTC.Caption = "Đăng Ký Tín Chỉ";
+            this.bbtnDKLopTC.Id = 33;
+            this.bbtnDKLopTC.ImageOptions.LargeImageIndex = 21;
+            this.bbtnDKLopTC.Name = "bbtnDKLopTC";
             // 
-            // barButtonItem10
+            // bbtnNhapDiem
             // 
-            this.barButtonItem10.Caption = "Nhập Điểm";
-            this.barButtonItem10.Id = 34;
-            this.barButtonItem10.ImageOptions.LargeImageIndex = 22;
-            this.barButtonItem10.Name = "barButtonItem10";
+            this.bbtnNhapDiem.Caption = "Nhập Điểm";
+            this.bbtnNhapDiem.Id = 34;
+            this.bbtnNhapDiem.ImageOptions.LargeImageIndex = 22;
+            this.bbtnNhapDiem.Name = "bbtnNhapDiem";
             // 
-            // barButtonItem11
+            // bbtnDongHocPhi
             // 
-            this.barButtonItem11.Caption = "Đóng Học Phí";
-            this.barButtonItem11.Id = 35;
-            this.barButtonItem11.ImageOptions.LargeImageIndex = 20;
-            this.barButtonItem11.Name = "barButtonItem11";
-            this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
+            this.bbtnDongHocPhi.Caption = "Đóng Học Phí";
+            this.bbtnDongHocPhi.Id = 35;
+            this.bbtnDongHocPhi.ImageOptions.LargeImageIndex = 20;
+            this.bbtnDongHocPhi.Name = "bbtnDongHocPhi";
+            this.bbtnDongHocPhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
             // 
             // Icon
             // 
@@ -249,13 +249,13 @@ namespace QLSV_HTC
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Tài khoản";
             // 
-            // ribbonPage2
+            // rbDanhMuc
             // 
-            this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbDanhMuc.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
             this.ribbonPageGroup7});
-            this.ribbonPage2.Name = "ribbonPage2";
-            this.ribbonPage2.Text = "Danh Mục";
+            this.rbDanhMuc.Name = "rbDanhMuc";
+            this.rbDanhMuc.Text = "Danh Mục";
             // 
             // ribbonPageGroup2
             // 
@@ -281,9 +281,9 @@ namespace QLSV_HTC
             // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem9, true);
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem10, true);
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem11, true);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbtnDKLopTC, true);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbtnNhapDiem, true);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbtnDongHocPhi, true);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             // 
             // ribbonPage4
@@ -378,6 +378,7 @@ namespace QLSV_HTC
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();
@@ -398,7 +399,7 @@ namespace QLSV_HTC
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraBars.BarButtonItem btnSignIn;
         private DevExpress.XtraBars.BarButtonItem btnSignOut;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbDanhMuc;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
@@ -415,9 +416,9 @@ namespace QLSV_HTC
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem btnGiangVien;
         private DevExpress.XtraBars.BarButtonItem btnSinhVien;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarButtonItem bbtnDKLopTC;
+        private DevExpress.XtraBars.BarButtonItem bbtnNhapDiem;
+        private DevExpress.XtraBars.BarButtonItem bbtnDongHocPhi;
         private DevExpress.Utils.ImageCollection Icon;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
         private DevExpress.XtraBars.Docking2010.DocumentManager documentManager1;

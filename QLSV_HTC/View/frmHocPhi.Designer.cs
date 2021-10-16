@@ -56,20 +56,20 @@ namespace QLSV_HTC.View
             this.colSoTienDaDong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSoTienCanDong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gbTTHP = new System.Windows.Forms.GroupBox();
-            this.hOCPHITextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.hOCKYComboBox = new System.Windows.Forms.ComboBox();
-            this.nIENKHOATextBox = new System.Windows.Forms.TextBox();
+            this.txtHocPhi = new DevExpress.XtraEditors.TextEdit();
+            this.cbbHocKy = new System.Windows.Forms.ComboBox();
+            this.txtNienKhoa = new System.Windows.Forms.TextBox();
             this.bdsCTHP = new System.Windows.Forms.BindingSource(this.components);
             this.CT_DONGHOCPHITableAdapter = new QLSV_HTC.DSHPTableAdapters.CT_DONGHOCPHITableAdapter();
             this.gcCTHP = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnThemSV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnXoaSV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSuaSV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnGhiSV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnHuySV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnPhucHoiSV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnLamMoiSV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnThemCHTP = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXoaCTHP = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSuaCTHP = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGhiCTHP = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnHuyCTHP = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPhucHoiCTHP = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLamMoiCTHP = new System.Windows.Forms.ToolStripMenuItem();
             this.gvCTHP = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colNGAYDONG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOTIENDONG = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -101,7 +101,7 @@ namespace QLSV_HTC.View
             ((System.ComponentModel.ISupportInitialize)(this.gcHocPhi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvHocPhi)).BeginInit();
             this.gbTTHP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hOCPHITextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHocPhi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTHP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCTHP)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -291,6 +291,8 @@ namespace QLSV_HTC.View
             // 
             // colHOCPHI
             // 
+            this.colHOCPHI.DisplayFormat.FormatString = "n0";
+            this.colHOCPHI.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colHOCPHI.FieldName = "HOCPHI";
             this.colHOCPHI.MinWidth = 25;
             this.colHOCPHI.Name = "colHOCPHI";
@@ -301,6 +303,7 @@ namespace QLSV_HTC.View
             // colSoTienDaDong
             // 
             this.colSoTienDaDong.Caption = "SOTIENDADONG";
+            this.colSoTienDaDong.DisplayFormat.FormatString = "n0";
             this.colSoTienDaDong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSoTienDaDong.MinWidth = 25;
             this.colSoTienDaDong.Name = "colSoTienDaDong";
@@ -311,6 +314,7 @@ namespace QLSV_HTC.View
             // colSoTienCanDong
             // 
             this.colSoTienCanDong.Caption = "SOTIENCANDONG";
+            this.colSoTienCanDong.DisplayFormat.FormatString = "n0";
             this.colSoTienCanDong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSoTienCanDong.MinWidth = 25;
             this.colSoTienCanDong.Name = "colSoTienCanDong";
@@ -321,11 +325,11 @@ namespace QLSV_HTC.View
             // gbTTHP
             // 
             this.gbTTHP.Controls.Add(hOCPHILabel);
-            this.gbTTHP.Controls.Add(this.hOCPHITextEdit);
+            this.gbTTHP.Controls.Add(this.txtHocPhi);
             this.gbTTHP.Controls.Add(hOCKYLabel);
-            this.gbTTHP.Controls.Add(this.hOCKYComboBox);
+            this.gbTTHP.Controls.Add(this.cbbHocKy);
             this.gbTTHP.Controls.Add(nIENKHOALabel);
-            this.gbTTHP.Controls.Add(this.nIENKHOATextBox);
+            this.gbTTHP.Controls.Add(this.txtNienKhoa);
             this.gbTTHP.Dock = System.Windows.Forms.DockStyle.Left;
             this.gbTTHP.Location = new System.Drawing.Point(0, 338);
             this.gbTTHP.Name = "gbTTHP";
@@ -334,30 +338,40 @@ namespace QLSV_HTC.View
             this.gbTTHP.TabStop = false;
             this.gbTTHP.Text = "Thông tin đóng học phí";
             // 
-            // hOCPHITextEdit
+            // txtHocPhi
             // 
-            this.hOCPHITextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsHocPhi, "HOCPHI", true));
-            this.hOCPHITextEdit.Location = new System.Drawing.Point(114, 164);
-            this.hOCPHITextEdit.Name = "hOCPHITextEdit";
-            this.hOCPHITextEdit.Size = new System.Drawing.Size(215, 22);
-            this.hOCPHITextEdit.TabIndex = 5;
+            this.txtHocPhi.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsHocPhi, "HOCPHI", true));
+            this.txtHocPhi.Location = new System.Drawing.Point(114, 164);
+            this.txtHocPhi.Name = "txtHocPhi";
+            this.txtHocPhi.Properties.DisplayFormat.FormatString = "n0";
+            this.txtHocPhi.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtHocPhi.Properties.EditFormat.FormatString = "n0";
+            this.txtHocPhi.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtHocPhi.Size = new System.Drawing.Size(215, 22);
+            this.txtHocPhi.TabIndex = 5;
             // 
-            // hOCKYComboBox
+            // cbbHocKy
             // 
-            this.hOCKYComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsHocPhi, "HOCKY", true));
-            this.hOCKYComboBox.FormattingEnabled = true;
-            this.hOCKYComboBox.Location = new System.Drawing.Point(113, 111);
-            this.hOCKYComboBox.Name = "hOCKYComboBox";
-            this.hOCKYComboBox.Size = new System.Drawing.Size(73, 24);
-            this.hOCKYComboBox.TabIndex = 3;
+            this.cbbHocKy.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsHocPhi, "HOCKY", true));
+            this.cbbHocKy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbHocKy.FormattingEnabled = true;
+            this.cbbHocKy.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cbbHocKy.Location = new System.Drawing.Point(113, 111);
+            this.cbbHocKy.Name = "cbbHocKy";
+            this.cbbHocKy.Size = new System.Drawing.Size(73, 24);
+            this.cbbHocKy.TabIndex = 3;
             // 
-            // nIENKHOATextBox
+            // txtNienKhoa
             // 
-            this.nIENKHOATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsHocPhi, "NIENKHOA", true));
-            this.nIENKHOATextBox.Location = new System.Drawing.Point(114, 52);
-            this.nIENKHOATextBox.Name = "nIENKHOATextBox";
-            this.nIENKHOATextBox.Size = new System.Drawing.Size(215, 23);
-            this.nIENKHOATextBox.TabIndex = 1;
+            this.txtNienKhoa.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsHocPhi, "NIENKHOA", true));
+            this.txtNienKhoa.Location = new System.Drawing.Point(114, 52);
+            this.txtNienKhoa.Name = "txtNienKhoa";
+            this.txtNienKhoa.Size = new System.Drawing.Size(215, 23);
+            this.txtNienKhoa.TabIndex = 1;
             // 
             // bdsCTHP
             // 
@@ -385,71 +399,71 @@ namespace QLSV_HTC.View
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnThemSV,
-            this.btnXoaSV,
-            this.btnSuaSV,
-            this.btnGhiSV,
-            this.btnHuySV,
-            this.btnPhucHoiSV,
-            this.btnLamMoiSV});
+            this.btnThemCHTP,
+            this.btnXoaCTHP,
+            this.btnSuaCTHP,
+            this.btnGhiCTHP,
+            this.btnHuyCTHP,
+            this.btnPhucHoiCTHP,
+            this.btnLamMoiCTHP});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(215, 214);
             // 
-            // btnThemSV
+            // btnThemCHTP
             // 
-            this.btnThemSV.Image = global::QLSV_HTC.Properties.Resources.plus;
-            this.btnThemSV.Name = "btnThemSV";
-            this.btnThemSV.Size = new System.Drawing.Size(214, 26);
-            this.btnThemSV.Text = "Thêm";
-            this.btnThemSV.Click += new System.EventHandler(this.btnThemSV_Click);
+            this.btnThemCHTP.Image = global::QLSV_HTC.Properties.Resources.plus;
+            this.btnThemCHTP.Name = "btnThemCHTP";
+            this.btnThemCHTP.Size = new System.Drawing.Size(214, 26);
+            this.btnThemCHTP.Text = "Thêm";
+            this.btnThemCHTP.Click += new System.EventHandler(this.btnThemCHTP_Click);
             // 
-            // btnXoaSV
+            // btnXoaCTHP
             // 
-            this.btnXoaSV.Image = global::QLSV_HTC.Properties.Resources.erase;
-            this.btnXoaSV.Name = "btnXoaSV";
-            this.btnXoaSV.Size = new System.Drawing.Size(214, 26);
-            this.btnXoaSV.Text = "Xóa";
-            this.btnXoaSV.Click += new System.EventHandler(this.btnXoaSV_Click);
+            this.btnXoaCTHP.Image = global::QLSV_HTC.Properties.Resources.erase;
+            this.btnXoaCTHP.Name = "btnXoaCTHP";
+            this.btnXoaCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnXoaCTHP.Text = "Xóa";
+            this.btnXoaCTHP.Click += new System.EventHandler(this.btnXoaCTHP_Click);
             // 
-            // btnSuaSV
+            // btnSuaCTHP
             // 
-            this.btnSuaSV.Image = global::QLSV_HTC.Properties.Resources.repair;
-            this.btnSuaSV.Name = "btnSuaSV";
-            this.btnSuaSV.Size = new System.Drawing.Size(214, 26);
-            this.btnSuaSV.Text = "Sửa";
-            this.btnSuaSV.Click += new System.EventHandler(this.btnSuaSV_Click);
+            this.btnSuaCTHP.Image = global::QLSV_HTC.Properties.Resources.repair;
+            this.btnSuaCTHP.Name = "btnSuaCTHP";
+            this.btnSuaCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnSuaCTHP.Text = "Sửa";
+            this.btnSuaCTHP.Click += new System.EventHandler(this.btnSuaCTHP_Click);
             // 
-            // btnGhiSV
+            // btnGhiCTHP
             // 
-            this.btnGhiSV.Image = global::QLSV_HTC.Properties.Resources.save_all;
-            this.btnGhiSV.Name = "btnGhiSV";
-            this.btnGhiSV.Size = new System.Drawing.Size(214, 26);
-            this.btnGhiSV.Text = "Ghi";
-            this.btnGhiSV.Click += new System.EventHandler(this.btnGhiSV_Click);
+            this.btnGhiCTHP.Image = global::QLSV_HTC.Properties.Resources.save_all;
+            this.btnGhiCTHP.Name = "btnGhiCTHP";
+            this.btnGhiCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnGhiCTHP.Text = "Ghi";
+            this.btnGhiCTHP.Click += new System.EventHandler(this.btnGhiCTHP_Click);
             // 
-            // btnHuySV
+            // btnHuyCTHP
             // 
-            this.btnHuySV.Image = global::QLSV_HTC.Properties.Resources.stock_not;
-            this.btnHuySV.Name = "btnHuySV";
-            this.btnHuySV.Size = new System.Drawing.Size(214, 26);
-            this.btnHuySV.Text = "Hủy";
-            this.btnHuySV.Click += new System.EventHandler(this.btnHuySV_Click);
+            this.btnHuyCTHP.Image = global::QLSV_HTC.Properties.Resources.stock_not;
+            this.btnHuyCTHP.Name = "btnHuyCTHP";
+            this.btnHuyCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnHuyCTHP.Text = "Hủy";
+            this.btnHuyCTHP.Click += new System.EventHandler(this.btnHuyCTHP_Click);
             // 
-            // btnPhucHoiSV
+            // btnPhucHoiCTHP
             // 
-            this.btnPhucHoiSV.Image = global::QLSV_HTC.Properties.Resources.undo;
-            this.btnPhucHoiSV.Name = "btnPhucHoiSV";
-            this.btnPhucHoiSV.Size = new System.Drawing.Size(214, 26);
-            this.btnPhucHoiSV.Text = "Phục hồi";
-            this.btnPhucHoiSV.Click += new System.EventHandler(this.btnPhucHoiSV_Click);
+            this.btnPhucHoiCTHP.Image = global::QLSV_HTC.Properties.Resources.undo;
+            this.btnPhucHoiCTHP.Name = "btnPhucHoiCTHP";
+            this.btnPhucHoiCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnPhucHoiCTHP.Text = "Phục hồi";
+            this.btnPhucHoiCTHP.Click += new System.EventHandler(this.btnPhucHoiCTHP_Click);
             // 
-            // btnLamMoiSV
+            // btnLamMoiCTHP
             // 
-            this.btnLamMoiSV.Image = global::QLSV_HTC.Properties.Resources.gnome_view_refresh;
-            this.btnLamMoiSV.Name = "btnLamMoiSV";
-            this.btnLamMoiSV.Size = new System.Drawing.Size(214, 26);
-            this.btnLamMoiSV.Text = "Làm mới";
-            this.btnLamMoiSV.Click += new System.EventHandler(this.btnLamMoiSV_Click);
+            this.btnLamMoiCTHP.Image = global::QLSV_HTC.Properties.Resources.gnome_view_refresh;
+            this.btnLamMoiCTHP.Name = "btnLamMoiCTHP";
+            this.btnLamMoiCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnLamMoiCTHP.Text = "Làm mới";
+            this.btnLamMoiCTHP.Click += new System.EventHandler(this.btnLamMoiCTHP_Click);
             // 
             // gvCTHP
             // 
@@ -461,6 +475,8 @@ namespace QLSV_HTC.View
             // 
             // colNGAYDONG
             // 
+            this.colNGAYDONG.DisplayFormat.FormatString = "d";
+            this.colNGAYDONG.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colNGAYDONG.FieldName = "NGAYDONG";
             this.colNGAYDONG.MinWidth = 25;
             this.colNGAYDONG.Name = "colNGAYDONG";
@@ -470,6 +486,8 @@ namespace QLSV_HTC.View
             // 
             // colSOTIENDONG
             // 
+            this.colSOTIENDONG.DisplayFormat.FormatString = "n0";
+            this.colSOTIENDONG.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSOTIENDONG.FieldName = "SOTIENDONG";
             this.colSOTIENDONG.MinWidth = 25;
             this.colSOTIENDONG.Name = "colSOTIENDONG";
@@ -519,6 +537,7 @@ namespace QLSV_HTC.View
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick_1);
             // 
             // btnXoa
             // 
@@ -527,6 +546,7 @@ namespace QLSV_HTC.View
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick_1);
             // 
             // btnSua
             // 
@@ -535,6 +555,7 @@ namespace QLSV_HTC.View
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
             this.btnSua.Name = "btnSua";
+            this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
             // 
             // btnPhucHoi
             // 
@@ -542,6 +563,7 @@ namespace QLSV_HTC.View
             this.btnPhucHoi.Id = 3;
             this.btnPhucHoi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPhucHoi.ImageOptions.SvgImage")));
             this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoi_ItemClick);
             // 
             // btnGhi
             // 
@@ -550,6 +572,7 @@ namespace QLSV_HTC.View
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
+            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
             // btnHuy
             // 
@@ -557,6 +580,7 @@ namespace QLSV_HTC.View
             this.btnHuy.Id = 5;
             this.btnHuy.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHuy.ImageOptions.SvgImage")));
             this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
             // 
             // btnLamMoi
             // 
@@ -565,6 +589,7 @@ namespace QLSV_HTC.View
             this.btnLamMoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.Image")));
             this.btnLamMoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.LargeImage")));
             this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLamMoi_ItemClick);
             // 
             // bar3
             // 
@@ -644,7 +669,7 @@ namespace QLSV_HTC.View
             ((System.ComponentModel.ISupportInitialize)(this.gvHocPhi)).EndInit();
             this.gbTTHP.ResumeLayout(false);
             this.gbTTHP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hOCPHITextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHocPhi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTHP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCTHP)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -679,19 +704,19 @@ namespace QLSV_HTC.View
         private DevExpress.XtraGrid.Columns.GridColumn colHOCPHI;
         private System.Windows.Forms.TextBox txtTen;
         private System.Windows.Forms.TextBox txtHo;
-        private DevExpress.XtraEditors.TextEdit hOCPHITextEdit;
-        private System.Windows.Forms.ComboBox hOCKYComboBox;
-        private System.Windows.Forms.TextBox nIENKHOATextBox;
+        private DevExpress.XtraEditors.TextEdit txtHocPhi;
+        private System.Windows.Forms.ComboBox cbbHocKy;
+        private System.Windows.Forms.TextBox txtNienKhoa;
         private DevExpress.XtraGrid.Columns.GridColumn colSoTienDaDong;
         private DevExpress.XtraGrid.Columns.GridColumn colSoTienCanDong;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem btnThemSV;
-        private System.Windows.Forms.ToolStripMenuItem btnXoaSV;
-        private System.Windows.Forms.ToolStripMenuItem btnSuaSV;
-        private System.Windows.Forms.ToolStripMenuItem btnGhiSV;
-        private System.Windows.Forms.ToolStripMenuItem btnHuySV;
-        private System.Windows.Forms.ToolStripMenuItem btnLamMoiSV;
-        private System.Windows.Forms.ToolStripMenuItem btnPhucHoiSV;
+        private System.Windows.Forms.ToolStripMenuItem btnThemCHTP;
+        private System.Windows.Forms.ToolStripMenuItem btnXoaCTHP;
+        private System.Windows.Forms.ToolStripMenuItem btnSuaCTHP;
+        private System.Windows.Forms.ToolStripMenuItem btnGhiCTHP;
+        private System.Windows.Forms.ToolStripMenuItem btnHuyCTHP;
+        private System.Windows.Forms.ToolStripMenuItem btnLamMoiCTHP;
+        private System.Windows.Forms.ToolStripMenuItem btnPhucHoiCTHP;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnThem;
