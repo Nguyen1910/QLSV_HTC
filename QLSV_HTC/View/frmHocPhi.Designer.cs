@@ -33,9 +33,9 @@ namespace QLSV_HTC.View
             System.Windows.Forms.Label mASVLabel;
             System.Windows.Forms.Label hOLabel;
             System.Windows.Forms.Label mALOPLabel;
-            System.Windows.Forms.Label nIENKHOALabel;
             System.Windows.Forms.Label hOCKYLabel;
             System.Windows.Forms.Label hOCPHILabel;
+            System.Windows.Forms.Label nIENKHOALabel1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHocPhi));
             this.DSHP = new QLSV_HTC.DSHP();
             this.tableAdapterManager = new QLSV_HTC.DSHPTableAdapters.TableAdapterManager();
@@ -56,9 +56,9 @@ namespace QLSV_HTC.View
             this.colSoTienDaDong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSoTienCanDong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gbTTHP = new System.Windows.Forms.GroupBox();
+            this.cbbNienKhoa = new System.Windows.Forms.ComboBox();
             this.txtHocPhi = new DevExpress.XtraEditors.TextEdit();
             this.cbbHocKy = new System.Windows.Forms.ComboBox();
-            this.txtNienKhoa = new System.Windows.Forms.TextBox();
             this.bdsCTHP = new System.Windows.Forms.BindingSource(this.components);
             this.CT_DONGHOCPHITableAdapter = new QLSV_HTC.DSHPTableAdapters.CT_DONGHOCPHITableAdapter();
             this.gcCTHP = new DevExpress.XtraGrid.GridControl();
@@ -91,9 +91,9 @@ namespace QLSV_HTC.View
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
-            nIENKHOALabel = new System.Windows.Forms.Label();
             hOCKYLabel = new System.Windows.Forms.Label();
             hOCPHILabel = new System.Windows.Forms.Label();
+            nIENKHOALabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DSHP)).BeginInit();
             this.gbTTSV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSV)).BeginInit();
@@ -136,15 +136,6 @@ namespace QLSV_HTC.View
             mALOPLabel.TabIndex = 5;
             mALOPLabel.Text = "Lớp:";
             // 
-            // nIENKHOALabel
-            // 
-            nIENKHOALabel.AutoSize = true;
-            nIENKHOALabel.Location = new System.Drawing.Point(30, 55);
-            nIENKHOALabel.Name = "nIENKHOALabel";
-            nIENKHOALabel.Size = new System.Drawing.Size(78, 17);
-            nIENKHOALabel.TabIndex = 0;
-            nIENKHOALabel.Text = "NIENKHOA:";
-            // 
             // hOCKYLabel
             // 
             hOCKYLabel.AutoSize = true;
@@ -162,6 +153,15 @@ namespace QLSV_HTC.View
             hOCPHILabel.Size = new System.Drawing.Size(62, 17);
             hOCPHILabel.TabIndex = 4;
             hOCPHILabel.Text = "HOCPHI:";
+            // 
+            // nIENKHOALabel1
+            // 
+            nIENKHOALabel1.AutoSize = true;
+            nIENKHOALabel1.Location = new System.Drawing.Point(30, 66);
+            nIENKHOALabel1.Name = "nIENKHOALabel1";
+            nIENKHOALabel1.Size = new System.Drawing.Size(78, 17);
+            nIENKHOALabel1.TabIndex = 6;
+            nIENKHOALabel1.Text = "NIENKHOA:";
             // 
             // DSHP
             // 
@@ -192,7 +192,7 @@ namespace QLSV_HTC.View
             this.gbTTSV.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbTTSV.Location = new System.Drawing.Point(0, 30);
             this.gbTTSV.Name = "gbTTSV";
-            this.gbTTSV.Size = new System.Drawing.Size(963, 88);
+            this.gbTTSV.Size = new System.Drawing.Size(956, 88);
             this.gbTTSV.TabIndex = 14;
             this.gbTTSV.TabStop = false;
             this.gbTTSV.Text = "Thông tin sinh viên";
@@ -254,7 +254,7 @@ namespace QLSV_HTC.View
             this.gcHocPhi.Location = new System.Drawing.Point(0, 118);
             this.gcHocPhi.MainView = this.gvHocPhi;
             this.gcHocPhi.Name = "gcHocPhi";
-            this.gcHocPhi.Size = new System.Drawing.Size(963, 220);
+            this.gcHocPhi.Size = new System.Drawing.Size(956, 220);
             this.gcHocPhi.TabIndex = 29;
             this.gcHocPhi.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvHocPhi});
@@ -307,6 +307,7 @@ namespace QLSV_HTC.View
             this.colSoTienDaDong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSoTienDaDong.MinWidth = 25;
             this.colSoTienDaDong.Name = "colSoTienDaDong";
+            this.colSoTienDaDong.OptionsColumn.ReadOnly = true;
             this.colSoTienDaDong.Visible = true;
             this.colSoTienDaDong.VisibleIndex = 3;
             this.colSoTienDaDong.Width = 94;
@@ -318,25 +319,41 @@ namespace QLSV_HTC.View
             this.colSoTienCanDong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSoTienCanDong.MinWidth = 25;
             this.colSoTienCanDong.Name = "colSoTienCanDong";
+            this.colSoTienCanDong.OptionsColumn.ReadOnly = true;
             this.colSoTienCanDong.Visible = true;
             this.colSoTienCanDong.VisibleIndex = 4;
             this.colSoTienCanDong.Width = 94;
             // 
             // gbTTHP
             // 
+            this.gbTTHP.Controls.Add(nIENKHOALabel1);
+            this.gbTTHP.Controls.Add(this.cbbNienKhoa);
             this.gbTTHP.Controls.Add(hOCPHILabel);
             this.gbTTHP.Controls.Add(this.txtHocPhi);
             this.gbTTHP.Controls.Add(hOCKYLabel);
             this.gbTTHP.Controls.Add(this.cbbHocKy);
-            this.gbTTHP.Controls.Add(nIENKHOALabel);
-            this.gbTTHP.Controls.Add(this.txtNienKhoa);
             this.gbTTHP.Dock = System.Windows.Forms.DockStyle.Left;
             this.gbTTHP.Location = new System.Drawing.Point(0, 338);
             this.gbTTHP.Name = "gbTTHP";
-            this.gbTTHP.Size = new System.Drawing.Size(396, 390);
+            this.gbTTHP.Size = new System.Drawing.Size(383, 390);
             this.gbTTHP.TabIndex = 30;
             this.gbTTHP.TabStop = false;
             this.gbTTHP.Text = "Thông tin đóng học phí";
+            // 
+            // cbbNienKhoa
+            // 
+            this.cbbNienKhoa.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsHocPhi, "NIENKHOA", true));
+            this.cbbNienKhoa.FormattingEnabled = true;
+            this.cbbNienKhoa.Items.AddRange(new object[] {
+            "2018-2019",
+            "2019-2020",
+            "2020-2021",
+            "2021-2022",
+            "2022-2023"});
+            this.cbbNienKhoa.Location = new System.Drawing.Point(114, 63);
+            this.cbbNienKhoa.Name = "cbbNienKhoa";
+            this.cbbNienKhoa.Size = new System.Drawing.Size(215, 24);
+            this.cbbNienKhoa.TabIndex = 7;
             // 
             // txtHocPhi
             // 
@@ -365,14 +382,6 @@ namespace QLSV_HTC.View
             this.cbbHocKy.Size = new System.Drawing.Size(73, 24);
             this.cbbHocKy.TabIndex = 3;
             // 
-            // txtNienKhoa
-            // 
-            this.txtNienKhoa.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsHocPhi, "NIENKHOA", true));
-            this.txtNienKhoa.Location = new System.Drawing.Point(114, 52);
-            this.txtNienKhoa.Name = "txtNienKhoa";
-            this.txtNienKhoa.Size = new System.Drawing.Size(215, 23);
-            this.txtNienKhoa.TabIndex = 1;
-            // 
             // bdsCTHP
             // 
             this.bdsCTHP.DataMember = "FK_CT_DONGHOCPHI_HOCPHI";
@@ -387,10 +396,10 @@ namespace QLSV_HTC.View
             this.gcCTHP.ContextMenuStrip = this.contextMenuStrip1;
             this.gcCTHP.DataSource = this.bdsCTHP;
             this.gcCTHP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcCTHP.Location = new System.Drawing.Point(396, 338);
+            this.gcCTHP.Location = new System.Drawing.Point(383, 338);
             this.gcCTHP.MainView = this.gvCTHP;
             this.gcCTHP.Name = "gcCTHP";
-            this.gcCTHP.Size = new System.Drawing.Size(567, 390);
+            this.gcCTHP.Size = new System.Drawing.Size(573, 390);
             this.gcCTHP.TabIndex = 30;
             this.gcCTHP.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCTHP});
@@ -407,13 +416,13 @@ namespace QLSV_HTC.View
             this.btnPhucHoiCTHP,
             this.btnLamMoiCTHP});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(215, 214);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(141, 186);
             // 
             // btnThemCHTP
             // 
             this.btnThemCHTP.Image = global::QLSV_HTC.Properties.Resources.plus;
             this.btnThemCHTP.Name = "btnThemCHTP";
-            this.btnThemCHTP.Size = new System.Drawing.Size(214, 26);
+            this.btnThemCHTP.Size = new System.Drawing.Size(140, 26);
             this.btnThemCHTP.Text = "Thêm";
             this.btnThemCHTP.Click += new System.EventHandler(this.btnThemCHTP_Click);
             // 
@@ -421,7 +430,7 @@ namespace QLSV_HTC.View
             // 
             this.btnXoaCTHP.Image = global::QLSV_HTC.Properties.Resources.erase;
             this.btnXoaCTHP.Name = "btnXoaCTHP";
-            this.btnXoaCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnXoaCTHP.Size = new System.Drawing.Size(140, 26);
             this.btnXoaCTHP.Text = "Xóa";
             this.btnXoaCTHP.Click += new System.EventHandler(this.btnXoaCTHP_Click);
             // 
@@ -429,7 +438,7 @@ namespace QLSV_HTC.View
             // 
             this.btnSuaCTHP.Image = global::QLSV_HTC.Properties.Resources.repair;
             this.btnSuaCTHP.Name = "btnSuaCTHP";
-            this.btnSuaCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnSuaCTHP.Size = new System.Drawing.Size(140, 26);
             this.btnSuaCTHP.Text = "Sửa";
             this.btnSuaCTHP.Click += new System.EventHandler(this.btnSuaCTHP_Click);
             // 
@@ -437,7 +446,7 @@ namespace QLSV_HTC.View
             // 
             this.btnGhiCTHP.Image = global::QLSV_HTC.Properties.Resources.save_all;
             this.btnGhiCTHP.Name = "btnGhiCTHP";
-            this.btnGhiCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnGhiCTHP.Size = new System.Drawing.Size(140, 26);
             this.btnGhiCTHP.Text = "Ghi";
             this.btnGhiCTHP.Click += new System.EventHandler(this.btnGhiCTHP_Click);
             // 
@@ -445,7 +454,7 @@ namespace QLSV_HTC.View
             // 
             this.btnHuyCTHP.Image = global::QLSV_HTC.Properties.Resources.stock_not;
             this.btnHuyCTHP.Name = "btnHuyCTHP";
-            this.btnHuyCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnHuyCTHP.Size = new System.Drawing.Size(140, 26);
             this.btnHuyCTHP.Text = "Hủy";
             this.btnHuyCTHP.Click += new System.EventHandler(this.btnHuyCTHP_Click);
             // 
@@ -453,7 +462,7 @@ namespace QLSV_HTC.View
             // 
             this.btnPhucHoiCTHP.Image = global::QLSV_HTC.Properties.Resources.undo;
             this.btnPhucHoiCTHP.Name = "btnPhucHoiCTHP";
-            this.btnPhucHoiCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnPhucHoiCTHP.Size = new System.Drawing.Size(140, 26);
             this.btnPhucHoiCTHP.Text = "Phục hồi";
             this.btnPhucHoiCTHP.Click += new System.EventHandler(this.btnPhucHoiCTHP_Click);
             // 
@@ -461,7 +470,7 @@ namespace QLSV_HTC.View
             // 
             this.btnLamMoiCTHP.Image = global::QLSV_HTC.Properties.Resources.gnome_view_refresh;
             this.btnLamMoiCTHP.Name = "btnLamMoiCTHP";
-            this.btnLamMoiCTHP.Size = new System.Drawing.Size(214, 26);
+            this.btnLamMoiCTHP.Size = new System.Drawing.Size(140, 26);
             this.btnLamMoiCTHP.Text = "Làm mới";
             this.btnLamMoiCTHP.Click += new System.EventHandler(this.btnLamMoiCTHP_Click);
             // 
@@ -609,7 +618,7 @@ namespace QLSV_HTC.View
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(963, 30);
+            this.barDockControlTop.Size = new System.Drawing.Size(956, 30);
             // 
             // barDockControlBottom
             // 
@@ -617,7 +626,7 @@ namespace QLSV_HTC.View
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 728);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(963, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(956, 20);
             // 
             // barDockControlLeft
             // 
@@ -631,7 +640,7 @@ namespace QLSV_HTC.View
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl1.Location = new System.Drawing.Point(963, 30);
+            this.barDockControl1.Location = new System.Drawing.Point(956, 30);
             this.barDockControl1.Manager = this.barManager1;
             this.barDockControl1.Size = new System.Drawing.Size(0, 698);
             // 
@@ -639,7 +648,7 @@ namespace QLSV_HTC.View
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(963, 30);
+            this.barDockControlRight.Location = new System.Drawing.Point(956, 30);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 698);
             // 
@@ -647,7 +656,7 @@ namespace QLSV_HTC.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(963, 748);
+            this.ClientSize = new System.Drawing.Size(956, 748);
             this.Controls.Add(this.gcCTHP);
             this.Controls.Add(this.gbTTHP);
             this.Controls.Add(this.gcHocPhi);
@@ -706,7 +715,6 @@ namespace QLSV_HTC.View
         private System.Windows.Forms.TextBox txtHo;
         private DevExpress.XtraEditors.TextEdit txtHocPhi;
         private System.Windows.Forms.ComboBox cbbHocKy;
-        private System.Windows.Forms.TextBox txtNienKhoa;
         private DevExpress.XtraGrid.Columns.GridColumn colSoTienDaDong;
         private DevExpress.XtraGrid.Columns.GridColumn colSoTienCanDong;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -732,5 +740,6 @@ namespace QLSV_HTC.View
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private System.Windows.Forms.ComboBox cbbNienKhoa;
     }
 }

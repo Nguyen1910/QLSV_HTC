@@ -14,6 +14,7 @@ namespace QLSV_HTC.View
     {
         String flag = "";
         int vitriHP = 0, vitriCTHP = 0;
+        int totalHPDaDong = 0;
         public frmHocPhi()
         {
             InitializeComponent();
@@ -47,7 +48,16 @@ namespace QLSV_HTC.View
             contextMenuStrip1.Enabled = false;
             gcHocPhi.Enabled = gcCTHP.Enabled = false;
             gvHocPhi.OptionsBehavior.ReadOnly = true;
-
+            float total = 0;
+            for ( int i =0; i < bdsHocPhi.Count; i++)
+            {
+                
+                /*for (int j = 0; j < bdsCTHP.Count; j++)
+                {
+                    total += float.Parse(((DataRowView)bdsCTHP[j])[2].ToString());
+                }
+                MessageBox.Show(total + "         ", "", MessageBoxButtons.OK);*/
+            }
         }
 
         private void sINHVIENBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -66,13 +76,12 @@ namespace QLSV_HTC.View
                 txtHo.Text = ((DataRowView)bdsSV[bdsSV.Position])["HO"].ToString();
                 txtTen.Text = ((DataRowView)bdsSV[bdsSV.Position])["TEN"].ToString();
                 txtMaLop.Text = ((DataRowView)bdsSV[bdsSV.Position])["MALOP"].ToString();
-
                 btnThem.Enabled = btnLamMoi.Enabled = btnPhucHoi.Enabled = true;
                 btnGhi.Enabled = btnHuy.Enabled = false;
                 gbTTHP.Enabled = false;
                 gbTTSV.Enabled = true;
                 gcHocPhi.Enabled = gcCTHP.Enabled = true;
-                if(bdsCTHP.Count > 0)
+                if(bdsCTHP.Count >= 0)
                 {
                     contextMenuStrip1.Enabled = true;
                     btnThemCHTP.Enabled = btnXoaCTHP.Enabled = btnSuaCTHP.Enabled = btnPhucHoiCTHP.Enabled = true;
@@ -157,7 +166,7 @@ namespace QLSV_HTC.View
             gbTTSV.Enabled = false;
             contextMenuStrip1.Enabled = false;
             gcHocPhi.Enabled = gcCTHP.Enabled = false;
-            txtNienKhoa.Enabled = false;
+            cbbNienKhoa.Enabled = false;
             cbbHocKy.Enabled = false;
         }
 
@@ -168,10 +177,10 @@ namespace QLSV_HTC.View
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (txtNienKhoa.Text.Trim() == "")
+            if (cbbNienKhoa.Text.Trim() == "")
             {
                 MessageBox.Show("Niên khóa không được bỏ trống!", "", MessageBoxButtons.OK);
-                txtNienKhoa.Focus();
+                cbbNienKhoa.Focus();
                 return;
             }
             if (cbbHocKy.SelectedIndex == -1)
@@ -188,7 +197,7 @@ namespace QLSV_HTC.View
             }
             try
             {
-                String cmd = "EXEC SP_CHECKIDHOCPHI  @NienKhoa ='" + txtNienKhoa.Text + "', @HocKy ='" + cbbHocKy.SelectedItem + "', @maSV = '" + txtMaSV.Text + "'";
+                String cmd = "EXEC SP_CHECKIDHOCPHI  @NienKhoa ='" + cbbNienKhoa.Text + "', @HocKy ='" + cbbHocKy.SelectedItem + "', @maSV = '" + txtMaSV.Text + "'";
                 switch (flag)
                 {
                     case "btnThem":
@@ -199,6 +208,8 @@ namespace QLSV_HTC.View
                                 bdsHocPhi.ResetCurrentItem();
                                 this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                                 this.HOCPHITableAdapter.Update(this.DSHP.HOCPHI);
+                                btnThemCHTP.Enabled = btnXoaCTHP.Enabled = btnSuaCTHP.Enabled = btnLamMoiCTHP.Enabled = true;
+                                btnGhiCTHP.Enabled = btnHuyCTHP.Enabled = false;
                             }
                             else
                             {
@@ -216,7 +227,7 @@ namespace QLSV_HTC.View
                             bdsHocPhi.ResetCurrentItem();
                             this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                             this.HOCPHITableAdapter.Update(this.DSHP.HOCPHI);
-                            txtNienKhoa.Enabled = true;
+                            cbbNienKhoa.Enabled = true;
                             cbbHocKy.Enabled = true;
                             break;
                         }
@@ -246,7 +257,7 @@ namespace QLSV_HTC.View
             gbTTSV.Enabled = true;
             contextMenuStrip1.Enabled = true;
             gcHocPhi.Enabled = gcCTHP.Enabled = true;
-            txtNienKhoa.Enabled = cbbHocKy.Enabled = true;
+            cbbNienKhoa.Enabled = cbbHocKy.Enabled = true;
         }
 
         private void btnLamMoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -267,6 +278,11 @@ namespace QLSV_HTC.View
 
         private void btnThemCHTP_Click(object sender, EventArgs e)
         {
+            for (int k = 0; k < gvCTHP.RowCount; k++)
+            {
+                DataRow data = gvCTHP.GetDataRow(k);
+                totalHPDaDong = totalHPDaDong + int.Parse(data["SOTIENDONG"].ToString());
+            }
             flag = "btnThemCTHP";
             vitriHP = bdsHocPhi.Position;
             vitriCTHP = bdsCTHP.Position;
@@ -329,20 +345,33 @@ namespace QLSV_HTC.View
            try
             {
                 DateTime ngayDong = DateTime.Parse(((DataRowView)bdsCTHP[this.bdsCTHP.Position])["NGAYDONG"].ToString());
-                String cmd = "EXEC SP_CHECKIDCTHP @NienKhoa ='" + txtNienKhoa.Text + "', @HocKy ='" + cbbHocKy.SelectedItem.ToString() + "', @maSV = '" + txtMaSV.Text + "', @NgayDong = '" + ngayDong.ToShortDateString() + "'";
+                String cmd = "EXEC SP_CHECKIDCTHP @NienKhoa ='" + cbbNienKhoa.Text + "', @HocKy ='" + cbbHocKy.SelectedItem.ToString() + "', @maSV = '" + txtMaSV.Text + "', @NgayDong = '" + ngayDong.ToShortDateString() + "'";
                 switch (flag)
                 {
                     case "btnThemCTHP":
                         {
+                            int hocPhiDuocDong = int.Parse(((DataRowView)bdsHocPhi[this.bdsHocPhi.Position])["HOCPHI"].ToString()) - totalHPDaDong;
                             if (Program.ExecSqlNonQuery(cmd) == 0)
                             {
-                                bdsCTHP.EndEdit();
-                                bdsCTHP.ResetCurrentItem();
-                                this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                                this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
-                                bdsHocPhi.Position = vitriHP;
-                                this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                                this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);
+                                if (hocPhiDuocDong < int.Parse(((DataRowView)bdsCTHP[this.bdsCTHP.Position])["SOTIENDONG"].ToString()))
+                                {
+                                    bdsCTHP.EndEdit();
+                                    bdsCTHP.RemoveCurrent();
+                                    MessageBox.Show("Số tiền đươc phép đóng tối đa là "+ hocPhiDuocDong+"Đ !", "", MessageBoxButtons.OK);
+                                    totalHPDaDong = 0;
+                                }
+                                else
+                                {
+                                    bdsCTHP.EndEdit();
+                                    bdsCTHP.ResetCurrentItem();
+                                    this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
+                                    this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+                                    bdsHocPhi.Position = vitriHP;
+                                    this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
+                                    this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);
+                                    totalHPDaDong = 0;
+                                }
+                                
                             }
                             else
                             {

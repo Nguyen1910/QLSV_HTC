@@ -146,5 +146,17 @@ namespace QLSV_HTC
                 this.bbtnDongHocPhi.Enabled = false;
             }
         }
+
+        private void bbtnDSDongHocPhi_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmDSDongHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmDSDongHocPhi frm = new frmDSDongHocPhi();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
     }
 }

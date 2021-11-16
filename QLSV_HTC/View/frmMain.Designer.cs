@@ -44,6 +44,7 @@ namespace QLSV_HTC
             this.bbtnDKLopTC = new DevExpress.XtraBars.BarButtonItem();
             this.bbtnNhapDiem = new DevExpress.XtraBars.BarButtonItem();
             this.bbtnDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnDSDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
             this.Icon = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -65,6 +66,7 @@ namespace QLSV_HTC
             this.ID = new System.Windows.Forms.ToolStripStatusLabel();
             this.Name = new System.Windows.Forms.ToolStripStatusLabel();
             this.Group = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnTaoTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
@@ -93,11 +95,12 @@ namespace QLSV_HTC
             this.btnSinhVien,
             this.bbtnDKLopTC,
             this.bbtnNhapDiem,
-            this.bbtnDongHocPhi});
+            this.bbtnDongHocPhi,
+            this.bbtnDSDongHocPhi});
             this.ribbon.LargeImages = this.Icon;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ribbon.MaxItemId = 36;
+            this.ribbon.MaxItemId = 38;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -199,6 +202,15 @@ namespace QLSV_HTC
             this.bbtnDongHocPhi.Name = "bbtnDongHocPhi";
             this.bbtnDongHocPhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
             // 
+            // bbtnDSDongHocPhi
+            // 
+            this.bbtnDSDongHocPhi.Caption = "Danh sách học phí theo lớp";
+            this.bbtnDSDongHocPhi.Id = 36;
+            this.bbtnDSDongHocPhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbtnDSDongHocPhi.ImageOptions.Image")));
+            this.bbtnDSDongHocPhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbtnDSDongHocPhi.ImageOptions.LargeImage")));
+            this.bbtnDSDongHocPhi.Name = "bbtnDSDongHocPhi";
+            this.bbtnDSDongHocPhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnDSDongHocPhi_ItemClick);
+            // 
             // Icon
             // 
             this.Icon.ImageSize = new System.Drawing.Size(48, 48);
@@ -231,7 +243,8 @@ namespace QLSV_HTC
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup5});
+            this.ribbonPageGroup5,
+            this.btnTaoTaiKhoan});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Cấu Hình";
             // 
@@ -295,6 +308,7 @@ namespace QLSV_HTC
             // 
             // ribbonPageGroup4
             // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.bbtnDSDongHocPhi);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "ribbonPageGroup4";
             // 
@@ -361,6 +375,11 @@ namespace QLSV_HTC
             this.Group.Size = new System.Drawing.Size(50, 20);
             this.Group.Text = "Group";
             // 
+            // btnTaoTaiKhoan
+            // 
+            this.btnTaoTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup8.ImageOptions.Image")));
+            this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
+            // 
             // frmMain
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -375,6 +394,7 @@ namespace QLSV_HTC
             this.Controls.Add(this.ribbon);
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "frmMain";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
@@ -427,5 +447,7 @@ namespace QLSV_HTC
         private System.Windows.Forms.ToolStripStatusLabel ID;
         private System.Windows.Forms.ToolStripStatusLabel Name;
         private System.Windows.Forms.ToolStripStatusLabel Group;
+        private DevExpress.XtraBars.BarButtonItem bbtnDSDongHocPhi;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup btnTaoTaiKhoan;
     }
 }
