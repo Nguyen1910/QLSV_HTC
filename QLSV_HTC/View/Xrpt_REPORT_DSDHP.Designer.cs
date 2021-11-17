@@ -225,11 +225,13 @@ namespace QLSV_HTC.View
             // 
             // xrLabel5
             // 
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(150.6403F, 25.83333F);
+            this.xrLabel5.Font = new System.Drawing.Font("Arial", 18F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(50.64031F, 25.83333F);
             this.xrLabel5.Multiline = true;
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(349.3597F, 23F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(545.193F, 23F);
+            this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             this.xrLabel5.Text = "DANH SÁCH SINH VIÊN ĐÓNG HỌC PHÍ";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;

@@ -382,6 +382,25 @@ ORDER BY TENLOP</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="HOTENGVHPTableAdapter" GeneratorDataComponentClassName="HOTENGVHPTableAdapter" Name="HOTENGVHP" UserDataComponentName="HOTENGVHPTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="QLSV_HTCConnectionString1 (Settings)" DbObjectName="QLSV_HTC.dbo.GIANGVIEN" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT HO + ' ' + TEN AS HOTEN, MAGV
+FROM GIANGVIEN
+ORDER BY HOTEN</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="HOTEN" DataSetColumn="HOTEN" />
+              <Mapping SourceColumn="MAGV" DataSetColumn="MAGV" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -585,6 +604,26 @@ ORDER BY TENLOP</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="HOTENGVHP" msprop:Generator_TableClassName="HOTENGVHPDataTable" msprop:Generator_TableVarName="tableHOTENGVHP" msprop:Generator_RowChangedName="HOTENGVHPRowChanged" msprop:Generator_TablePropName="HOTENGVHP" msprop:Generator_RowDeletingName="HOTENGVHPRowDeleting" msprop:Generator_RowChangingName="HOTENGVHPRowChanging" msprop:Generator_RowEvHandlerName="HOTENGVHPRowChangeEventHandler" msprop:Generator_RowDeletedName="HOTENGVHPRowDeleted" msprop:Generator_RowClassName="HOTENGVHPRow" msprop:Generator_UserTableName="HOTENGVHP" msprop:Generator_RowEvArgName="HOTENGVHPRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="HOTEN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHOTEN" msprop:Generator_ColumnPropNameInRow="HOTEN" msprop:Generator_ColumnPropNameInTable="HOTENColumn" msprop:Generator_UserColumnName="HOTEN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MAGV" msprop:Generator_ColumnVarNameInTable="columnMAGV" msprop:Generator_ColumnPropNameInRow="MAGV" msprop:Generator_ColumnPropNameInTable="MAGVColumn" msprop:Generator_UserColumnName="MAGV">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -619,6 +658,10 @@ ORDER BY TENLOP</CommandText>
     <xs:unique name="TENLOP_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TENLOP" />
       <xs:field xpath="mstns:MALOP" />
+    </xs:unique>
+    <xs:unique name="HOTENGVHP_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:HOTENGVHP" />
+      <xs:field xpath="mstns:MAGV" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

@@ -34,8 +34,8 @@ namespace QLSV_HTC
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnSignIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnSignOut = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThongTin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDoiMatKhau = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
@@ -45,6 +45,7 @@ namespace QLSV_HTC
             this.bbtnNhapDiem = new DevExpress.XtraBars.BarButtonItem();
             this.bbtnDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
             this.bbtnDSDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTaoTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
             this.Icon = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -66,7 +67,6 @@ namespace QLSV_HTC
             this.ID = new System.Windows.Forms.ToolStripStatusLabel();
             this.Name = new System.Windows.Forms.ToolStripStatusLabel();
             this.Group = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnTaoTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
@@ -86,8 +86,8 @@ namespace QLSV_HTC
             this.ribbon.SearchEditItem,
             this.btnSignIn,
             this.btnSignOut,
-            this.barButtonItem2,
-            this.barButtonItem3,
+            this.btnThongTin,
+            this.btnDoiMatKhau,
             this.barButtonItem6,
             this.barButtonItem7,
             this.barButtonItem4,
@@ -96,11 +96,12 @@ namespace QLSV_HTC
             this.bbtnDKLopTC,
             this.bbtnNhapDiem,
             this.bbtnDongHocPhi,
-            this.bbtnDSDongHocPhi});
+            this.bbtnDSDongHocPhi,
+            this.btnTaoTaiKhoan});
             this.ribbon.LargeImages = this.Icon;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ribbon.MaxItemId = 38;
+            this.ribbon.MaxItemId = 39;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -125,20 +126,21 @@ namespace QLSV_HTC
             this.btnSignOut.Id = 5;
             this.btnSignOut.ImageOptions.Image = global::QLSV_HTC.Properties.Resources.outline_logout_black_24dp;
             this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSignOut_ItemClick);
             // 
-            // barButtonItem2
+            // btnThongTin
             // 
-            this.barButtonItem2.Caption = "Thông Tin";
-            this.barButtonItem2.Id = 26;
-            this.barButtonItem2.ImageOptions.LargeImageIndex = 4;
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.btnThongTin.Caption = "Thông Tin";
+            this.btnThongTin.Id = 26;
+            this.btnThongTin.ImageOptions.LargeImageIndex = 4;
+            this.btnThongTin.Name = "btnThongTin";
             // 
-            // barButtonItem3
+            // btnDoiMatKhau
             // 
-            this.barButtonItem3.Caption = "Đổi Mật Khẩu";
-            this.barButtonItem3.Id = 27;
-            this.barButtonItem3.ImageOptions.LargeImageIndex = 3;
-            this.barButtonItem3.Name = "barButtonItem3";
+            this.btnDoiMatKhau.Caption = "Đổi Mật Khẩu";
+            this.btnDoiMatKhau.Id = 27;
+            this.btnDoiMatKhau.ImageOptions.LargeImageIndex = 3;
+            this.btnDoiMatKhau.Name = "btnDoiMatKhau";
             // 
             // barButtonItem6
             // 
@@ -211,6 +213,15 @@ namespace QLSV_HTC
             this.bbtnDSDongHocPhi.Name = "bbtnDSDongHocPhi";
             this.bbtnDSDongHocPhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnDSDongHocPhi_ItemClick);
             // 
+            // btnTaoTaiKhoan
+            // 
+            this.btnTaoTaiKhoan.Caption = "Tạo tài khoản";
+            this.btnTaoTaiKhoan.Id = 38;
+            this.btnTaoTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoTaiKhoan.ImageOptions.Image")));
+            this.btnTaoTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTaoTaiKhoan.ImageOptions.LargeImage")));
+            this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
+            this.btnTaoTaiKhoan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaoTaiKhoan_ItemClick);
+            // 
             // Icon
             // 
             this.Icon.ImageSize = new System.Drawing.Size(48, 48);
@@ -243,8 +254,7 @@ namespace QLSV_HTC
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup5,
-            this.btnTaoTaiKhoan});
+            this.ribbonPageGroup5});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Cấu Hình";
             // 
@@ -257,8 +267,9 @@ namespace QLSV_HTC
             // 
             // ribbonPageGroup5
             // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem2, true);
-            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem3, true);
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnThongTin, true);
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnDoiMatKhau, true);
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnTaoTaiKhoan);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Tài khoản";
             // 
@@ -375,11 +386,6 @@ namespace QLSV_HTC
             this.Group.Size = new System.Drawing.Size(50, 20);
             this.Group.Text = "Group";
             // 
-            // btnTaoTaiKhoan
-            // 
-            this.btnTaoTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup8.ImageOptions.Image")));
-            this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
-            // 
             // frmMain
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -394,7 +400,6 @@ namespace QLSV_HTC
             this.Controls.Add(this.ribbon);
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "frmMain";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
@@ -429,8 +434,8 @@ namespace QLSV_HTC
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem btnThongTin;
+        private DevExpress.XtraBars.BarButtonItem btnDoiMatKhau;
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
@@ -448,6 +453,6 @@ namespace QLSV_HTC
         private System.Windows.Forms.ToolStripStatusLabel Name;
         private System.Windows.Forms.ToolStripStatusLabel Group;
         private DevExpress.XtraBars.BarButtonItem bbtnDSDongHocPhi;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup btnTaoTaiKhoan;
+        private DevExpress.XtraBars.BarButtonItem btnTaoTaiKhoan;
     }
 }

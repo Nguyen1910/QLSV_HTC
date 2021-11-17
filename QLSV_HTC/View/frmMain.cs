@@ -158,5 +158,22 @@ namespace QLSV_HTC
                 frm.Show();
             }
         }
+
+        private void btnTaoTaiKhoan_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmTaoTaiKhoan));
+            if (f != null) f.Activate();
+            else
+            {
+                frmTaoTaiKhoan frm = new frmTaoTaiKhoan();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btnSignOut_ItemClick(object sender, ItemClickEventArgs e)
+        {
+         
+        }
     }
 }
