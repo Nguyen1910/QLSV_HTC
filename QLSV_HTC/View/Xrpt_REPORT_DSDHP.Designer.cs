@@ -351,7 +351,7 @@ namespace QLSV_HTC.View
             // 
             this.lblTotalTienDaDong.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([HOCPHIDADONG])")});
-            this.lblTotalTienDaDong.LocationFloat = new DevExpress.Utils.PointFloat(150F, 45.5F);
+            this.lblTotalTienDaDong.LocationFloat = new DevExpress.Utils.PointFloat(150.8333F, 45.49999F);
             this.lblTotalTienDaDong.Multiline = true;
             this.lblTotalTienDaDong.Name = "lblTotalTienDaDong";
             this.lblTotalTienDaDong.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);

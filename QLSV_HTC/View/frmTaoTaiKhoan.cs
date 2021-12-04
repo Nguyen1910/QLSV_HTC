@@ -84,7 +84,7 @@ namespace QLSV_HTC.View
                 pass = passConfirm;
                 if( Program.m_group == "PKT")
                 {
-                    if(Program.ExecSqlNonQuery("EXEC LINK2.QLSV_HTC.[DBO].[SP_CHECKID]  @Code ='" + username + "' , @Type = 'USER'") == 2 || Program.ExecSqlNonQuery("EXEC LINK3.QLSV_HTC.[DBO].[SP_CHECKID]  @Code ='" + username + "' , @Type = 'USER'") == 2)
+                    if(Program.ExecSqlNonQuery("EXEC LINK1.QLSV_HTC.[DBO].[SP_CHECKID]  @Code ='" + username + "' , @Type = 'USER'") == 2 || Program.ExecSqlNonQuery("EXEC LINK2.QLSV_HTC.[DBO].[SP_CHECKID]  @Code ='" + username + "' , @Type = 'USER'") == 2)
                     {
                         MessageBox.Show("User đã tạo tài khoản rồi!", "", MessageBoxButtons.OK);
                     }

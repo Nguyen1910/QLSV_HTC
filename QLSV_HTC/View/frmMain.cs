@@ -67,9 +67,9 @@ namespace QLSV_HTC
 
         public void infoUser_Load(String id,String HovaTen,String group)
         {
-            Group.Text = group;
-            ID.Text = id;
-            Name.Text = HovaTen;
+            Group_StatusLabel.Text = group;
+            ID_StatusLabel.Text = id;
+            Name_StatusLabel.Text = HovaTen;
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -79,7 +79,7 @@ namespace QLSV_HTC
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
             // Confirm user wants to close
-            switch (MessageBox.Show(this, "Are you sure you want to close?", "Closing", MessageBoxButtons.YesNo))
+            switch (MessageBox.Show(this, "Bạn có muốn đóng ứng dụng ?", "Đóng Ứng Dụng", MessageBoxButtons.YesNo))
             {
                 case DialogResult.No:
                     e.Cancel = true;
@@ -174,6 +174,78 @@ namespace QLSV_HTC
         private void btnSignOut_ItemClick(object sender, ItemClickEventArgs e)
         {
          
+        }
+
+        private void bbtnDKLopTC_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmDangKy frm = new frmDangKy();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void bbtnNhapDiem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmNhapDiem frm = new frmNhapDiem();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void bbtnReportDSLTC_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmDSLTC frm = new frmDSLTC();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void bbtnDSSVDKLTC_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmDSSVDKLTC frm = new frmDSSVDKLTC();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void bbtnBDHM_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmBDHM frm = new frmBDHM();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void bbtnPD_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmPDSV frm = new frmPDSV();
+                frm.MdiParent = this;
+                frm.Show();
+            }
         }
     }
 }

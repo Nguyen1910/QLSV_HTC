@@ -46,6 +46,10 @@ namespace QLSV_HTC
             this.bbtnDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
             this.bbtnDSDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaoTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnReportDSLTC = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnDSSVDKLTC = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnBDHM = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnPD = new DevExpress.XtraBars.BarButtonItem();
             this.Icon = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -64,9 +68,9 @@ namespace QLSV_HTC
             this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.ID = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Name = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Group = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ID_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Name_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Group_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
@@ -97,11 +101,14 @@ namespace QLSV_HTC
             this.bbtnNhapDiem,
             this.bbtnDongHocPhi,
             this.bbtnDSDongHocPhi,
-            this.btnTaoTaiKhoan});
+            this.btnTaoTaiKhoan,
+            this.bbtnReportDSLTC,
+            this.bbtnDSSVDKLTC,
+            this.bbtnBDHM,
+            this.bbtnPD});
             this.ribbon.LargeImages = this.Icon;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ribbon.MaxItemId = 39;
+            this.ribbon.MaxItemId = 44;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -110,7 +117,7 @@ namespace QLSV_HTC
             this.ribbonPage4});
             this.ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageEdit1});
-            this.ribbon.Size = new System.Drawing.Size(931, 193);
+            this.ribbon.Size = new System.Drawing.Size(798, 158);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // btnSignIn
@@ -188,6 +195,7 @@ namespace QLSV_HTC
             this.bbtnDKLopTC.Id = 33;
             this.bbtnDKLopTC.ImageOptions.LargeImageIndex = 21;
             this.bbtnDKLopTC.Name = "bbtnDKLopTC";
+            this.bbtnDKLopTC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnDKLopTC_ItemClick);
             // 
             // bbtnNhapDiem
             // 
@@ -195,6 +203,7 @@ namespace QLSV_HTC
             this.bbtnNhapDiem.Id = 34;
             this.bbtnNhapDiem.ImageOptions.LargeImageIndex = 22;
             this.bbtnNhapDiem.Name = "bbtnNhapDiem";
+            this.bbtnNhapDiem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnNhapDiem_ItemClick);
             // 
             // bbtnDongHocPhi
             // 
@@ -221,6 +230,38 @@ namespace QLSV_HTC
             this.btnTaoTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTaoTaiKhoan.ImageOptions.LargeImage")));
             this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
             this.btnTaoTaiKhoan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaoTaiKhoan_ItemClick);
+            // 
+            // bbtnReportDSLTC
+            // 
+            this.bbtnReportDSLTC.Caption = "Danh sách lớp tín chỉ";
+            this.bbtnReportDSLTC.Id = 39;
+            this.bbtnReportDSLTC.ImageOptions.LargeImageIndex = 21;
+            this.bbtnReportDSLTC.Name = "bbtnReportDSLTC";
+            this.bbtnReportDSLTC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnReportDSLTC_ItemClick);
+            // 
+            // bbtnDSSVDKLTC
+            // 
+            this.bbtnDSSVDKLTC.Caption = "Danh sách sinh viên đã đăng ký lớp tín chỉ";
+            this.bbtnDSSVDKLTC.Id = 40;
+            this.bbtnDSSVDKLTC.ImageOptions.LargeImageIndex = 21;
+            this.bbtnDSSVDKLTC.Name = "bbtnDSSVDKLTC";
+            this.bbtnDSSVDKLTC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnDSSVDKLTC_ItemClick);
+            // 
+            // bbtnBDHM
+            // 
+            this.bbtnBDHM.Caption = "Bảng điểm hết môn";
+            this.bbtnBDHM.Id = 42;
+            this.bbtnBDHM.ImageOptions.LargeImageIndex = 21;
+            this.bbtnBDHM.Name = "bbtnBDHM";
+            this.bbtnBDHM.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnBDHM_ItemClick);
+            // 
+            // bbtnPD
+            // 
+            this.bbtnPD.Caption = "Phiếu điểm sinh viên";
+            this.bbtnPD.Id = 43;
+            this.bbtnPD.ImageOptions.LargeImageIndex = 21;
+            this.bbtnPD.Name = "bbtnPD";
+            this.bbtnPD.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnPD_ItemClick);
             // 
             // Icon
             // 
@@ -320,8 +361,12 @@ namespace QLSV_HTC
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.bbtnDSDongHocPhi);
+            this.ribbonPageGroup4.ItemLinks.Add(this.bbtnReportDSLTC);
+            this.ribbonPageGroup4.ItemLinks.Add(this.bbtnDSSVDKLTC);
+            this.ribbonPageGroup4.ItemLinks.Add(this.bbtnBDHM);
+            this.ribbonPageGroup4.ItemLinks.Add(this.bbtnPD);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "Báo cáo";
             // 
             // repositoryItemImageEdit1
             // 
@@ -332,11 +377,10 @@ namespace QLSV_HTC
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 707);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 575);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(931, 30);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(798, 24);
             // 
             // ribbonPage5
             // 
@@ -358,33 +402,32 @@ namespace QLSV_HTC
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ID,
-            this.Name,
-            this.Group});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 681);
+            this.ID_StatusLabel,
+            this.Name_StatusLabel,
+            this.Group_StatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 553);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(931, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(798, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // ID
+            // ID_StatusLabel
             // 
-            this.ID.Name = "ID";
-            this.ID.Size = new System.Drawing.Size(24, 20);
-            this.ID.Text = "ID";
+            this.ID_StatusLabel.Name = "ID_StatusLabel";
+            this.ID_StatusLabel.Size = new System.Drawing.Size(18, 17);
+            this.ID_StatusLabel.Text = "ID";
             // 
-            // Name
+            // Name_StatusLabel
             // 
-            this.Name.Name = "Name";
-            this.Name.Size = new System.Drawing.Size(49, 20);
-            this.Name.Text = "Name";
+            this.Name_StatusLabel.Name = "Name_StatusLabel";
+            this.Name_StatusLabel.Size = new System.Drawing.Size(39, 17);
+            this.Name_StatusLabel.Text = "Name";
             // 
-            // Group
+            // Group_StatusLabel
             // 
-            this.Group.Name = "Group";
-            this.Group.Size = new System.Drawing.Size(50, 20);
-            this.Group.Text = "Group";
+            this.Group_StatusLabel.Name = "Group_StatusLabel";
+            this.Group_StatusLabel.Size = new System.Drawing.Size(40, 17);
+            this.Group_StatusLabel.Text = "Group";
             // 
             // frmMain
             // 
@@ -392,17 +435,18 @@ namespace QLSV_HTC
             this.Appearance.ForeColor = System.Drawing.Color.Black;
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseForeColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 737);
+            this.ClientSize = new System.Drawing.Size(798, 599);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "frmMain";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon)).EndInit();
@@ -449,10 +493,14 @@ namespace QLSV_HTC
         private DevExpress.XtraBars.Docking2010.DocumentManager documentManager1;
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel ID;
-        private System.Windows.Forms.ToolStripStatusLabel Name;
-        private System.Windows.Forms.ToolStripStatusLabel Group;
+        private System.Windows.Forms.ToolStripStatusLabel ID_StatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel Name_StatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel Group_StatusLabel;
         private DevExpress.XtraBars.BarButtonItem bbtnDSDongHocPhi;
         private DevExpress.XtraBars.BarButtonItem btnTaoTaiKhoan;
+        private DevExpress.XtraBars.BarButtonItem bbtnReportDSLTC;
+        private DevExpress.XtraBars.BarButtonItem bbtnDSSVDKLTC;
+        private DevExpress.XtraBars.BarButtonItem bbtnBDHM;
+        private DevExpress.XtraBars.BarButtonItem bbtnPD;
     }
 }

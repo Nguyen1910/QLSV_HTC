@@ -125,6 +125,7 @@ namespace QLSV_HTC
             // 
             // cbSubscribes
             // 
+            this.cbSubscribes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSubscribes.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbSubscribes.FormattingEnabled = true;
             this.cbSubscribes.Location = new System.Drawing.Point(40, 80);

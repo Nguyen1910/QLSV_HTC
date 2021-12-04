@@ -6,3 +6,10 @@
     {
     }
 }
+
+namespace QLSV_HTC.DSHPTableAdapters {
+    
+    
+    public partial class HOTENGVHPTableAdapter {
+    }
+}

@@ -13,8 +13,8 @@ namespace QLSV_HTC
 {
     public partial class frmLop : DevExpress.XtraEditors.XtraForm
     {
-        String makhoa = "";
         int vitri = 0;
+        int vitriKhoa = 0;
         String flag = "";
         public frmLop()
         {
@@ -39,12 +39,12 @@ namespace QLSV_HTC
             this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
             this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
 
-            makhoa = ((DataRowView)bdsLop[0])["MAKHOA"].ToString();
-            Program.bds_dspm.Filter = "TENKHOA LIKE 'KHOA%'";
-            cmbKhoa.DataSource = Program.bds_dspm;
+            cmbKhoa.DataSource = Program.bds_dskhoa;
             cmbKhoa.DisplayMember = "TENKHOA";
             cmbKhoa.ValueMember = "TENSERVER";
+
             cmbKhoa.SelectedIndex = Program.m_subscribes;
+
             if(Program.m_group == "PGV")
             {
                 cmbKhoa.Enabled = true;
@@ -87,8 +87,6 @@ namespace QLSV_HTC
                 // TODO: This line of code loads data into the 'DS.SINHVIEN' table. You can move, or remove it, as needed.
                 this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connectStr;
                 this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
-
-                makhoa = ((DataRowView)bdsLop[0])["MAKHOA"].ToString();
             }
         }
 
@@ -96,8 +94,9 @@ namespace QLSV_HTC
         {
             flag = "btnThem";
             vitri = bdsLop.Position;
+            vitriKhoa = cmbKhoa.SelectedIndex;
             bdsLop.AddNew();
-            txtMaKhoa.Text = makhoa;
+            txtMaKhoa.Text = ((DataRowView)Program.bds_dskhoa[vitriKhoa])["MAKHOA"].ToString();
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = true;
             gbTTLop.Enabled = true;

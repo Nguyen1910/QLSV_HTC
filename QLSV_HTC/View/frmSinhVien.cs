@@ -12,8 +12,9 @@ namespace QLSV_HTC.View
 {
     public partial class frmSinhVien : DevExpress.XtraEditors.XtraForm
     {
-        String makhoa = "", maSV = "";
-        int vitriLop = 0, vitriSV = 0;
+        String maSV = "";
+        int vitriLop = 0, vitriSV = 0; 
+        int vitriKhoa = 0;
         String flag = "";
         public frmSinhVien()
         {
@@ -48,8 +49,6 @@ namespace QLSV_HTC.View
                 // TODO: This line of code loads data into the 'dS.LOP' table. You can move, or remove it, as needed.
                 this.DANGKYTableAdapter.Connection.ConnectionString = Program.connectStr;
                 this.DANGKYTableAdapter.Fill(this.DS.DANGKY);
-
-                makhoa = ((DataRowView)bdsLop[0])["MAKHOA"].ToString();
             }
         }
 
@@ -74,12 +73,12 @@ namespace QLSV_HTC.View
             this.DANGKYTableAdapter.Connection.ConnectionString = Program.connectStr;
             this.DANGKYTableAdapter.Fill(this.DS.DANGKY);
 
-            makhoa = ((DataRowView)bdsLop[0])["MAKHOA"].ToString();
-            Program.bds_dspm.Filter = "TENKHOA LIKE 'KHOA%'";
-            cmbKhoa.DataSource = Program.bds_dspm;
+            cmbKhoa.DataSource = Program.bds_dskhoa;
             cmbKhoa.DisplayMember = "TENKHOA";
             cmbKhoa.ValueMember = "TENSERVER";
+
             cmbKhoa.SelectedIndex = Program.m_subscribes;
+
             if (Program.m_group == "PGV")
             {
                 cmbKhoa.Enabled = true;
@@ -107,8 +106,9 @@ namespace QLSV_HTC.View
             if (bdsLop.Count == 0) return;
             flag = "btnThem";
             vitriLop = bdsLop.Position;
+            vitriKhoa = cmbKhoa.SelectedIndex;
             bdsLop.AddNew();
-            txtMaKhoa.Text = makhoa;
+            txtMaKhoa.Text = ((DataRowView)Program.bds_dskhoa[vitriKhoa])["MAKHOA"].ToString();
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = btnHuy.Enabled = true;
             gbTTLop.Enabled = true;

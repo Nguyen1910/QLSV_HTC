@@ -190,7 +190,22 @@ SELECT MASV, NIENKHOA, HOCKY, HOCPHI FROM HOCPHI WHERE (HOCKY = @HOCKY) AND (MAS
               <Mapping SourceColumn="HOCKY" DataSetColumn="HOCKY" />
               <Mapping SourceColumn="HOCPHI" DataSetColumn="HOCPHI" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="QLSV_HTCConnectionString1 (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillDetail" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataDetail" GeneratorSourceName="FillDetail" GetMethodModifier="Public" GetMethodName="GetDataDetail" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataDetail" UserSourceName="FillDetail">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MASV, NIENKHOA, HOCKY, SUM(SOTIENDONG) AS SOTIENDADONG
+INTO              #CTHP
+FROM            dbo.CT_DONGHOCPHI
+GROUP BY MASV, NIENKHOA, HOCKY
+SELECT        HOCPHI.MASV, HOCPHI.NIENKHOA, HOCPHI.HOCKY, HOCPHI.HOCPHI, #CTHP.SOTIENDADONG, HOCPHI - #CTHP.SOTIENDADONG AS SOTIENCANDONG
+                              FROM            dbo.HOCPHI LEFT JOIN
+                                                       #CTHP ON HOCPHI.NIENKHOA = #CTHP.NIENKHOA AND HOCPHI.HOCKY = #CTHP.HOCKY AND HOCPHI.MASV = #CTHP.MASV</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="KHOATableAdapter" GeneratorDataComponentClassName="KHOATableAdapter" Name="KHOA" UserDataComponentName="KHOATableAdapter">
             <MainSource>

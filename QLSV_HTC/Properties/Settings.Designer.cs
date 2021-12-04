@@ -26,7 +26,8 @@ namespace QLSV_HTC.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-ARJSH40\\SERVER;Initial Catalog=QLSV_HTC;User ID=LP")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-H44NOK6\\SERVER1;Initial Catalog=QLSV_HTC;User ID=sa;Password=" +
+            "123456")]
         public string QLSV_HTCConnectionString {
             get {
                 return ((string)(this["QLSV_HTCConnectionString"]));
@@ -36,7 +37,8 @@ namespace QLSV_HTC.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-ARJSH40\\SERVER2;Initial Catalog=QLSV_HTC;User ID=TH")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-H44NOK6\\SERVER3;Initial Catalog=QLSV_HTC;User ID=sa;Password=" +
+            "123456")]
         public string QLSV_HTCConnectionString1 {
             get {
                 return ((string)(this["QLSV_HTCConnectionString1"]));

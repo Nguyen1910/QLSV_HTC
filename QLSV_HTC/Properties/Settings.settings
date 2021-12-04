@@ -5,18 +5,18 @@
     <Setting Name="QLSV_HTCConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=DESKTOP-ARJSH40\SERVER;Initial Catalog=QLSV_HTC;User ID=LP&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-H44NOK6\SERVER1;Initial Catalog=QLSV_HTC;User ID=sa;Password=123456&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=DESKTOP-ARJSH40\SERVER;Initial Catalog=QLSV_HTC;User ID=LP</Value>
+      <Value Profile="(Default)">Data Source=DESKTOP-H44NOK6\SERVER1;Initial Catalog=QLSV_HTC;User ID=sa;Password=123456</Value>
     </Setting>
     <Setting Name="QLSV_HTCConnectionString1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=DESKTOP-ARJSH40\SERVER2;Initial Catalog=QLSV_HTC;User ID=TH&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-H44NOK6\SERVER3;Initial Catalog=QLSV_HTC;User ID=sa;Password=123456&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=DESKTOP-ARJSH40\SERVER2;Initial Catalog=QLSV_HTC;User ID=TH</Value>
+      <Value Profile="(Default)">Data Source=DESKTOP-H44NOK6\SERVER3;Initial Catalog=QLSV_HTC;User ID=sa;Password=123456</Value>
     </Setting>
   </Settings>
 </SettingsFile>

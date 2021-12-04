@@ -23,29 +23,20 @@ namespace QLSV_HTC.View
 
         private void frmDSDongHocPhi_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'DSHP.TENLOP' table. You can move, or remove it, as needed.
             DSHP.EnforceConstraints = false;
             this.TENLOPTableAdapter.Connection.ConnectionString = Program.connectStr;
             this.TENLOPTableAdapter.Fill(this.DSHP.TENLOP);
-        }
-
-        private void lOPBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsTENLOP.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DSHP);
-
+            cbbTenLop.SelectedIndex = 0;
+            cbbNienKhoa.SelectedIndex = 0;
+            cbbHocKy.SelectedIndex = 0;
         }
 
         private void cbbTenLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if(cbbTenLop.SelectedIndex >= 0)
             {
                 maLop = cbbTenLop.SelectedValue.ToString();
                 tenKhoa = ((DataRowView)bdsTENLOP[bdsTENLOP.Position])["TENKHOA"].ToString();
-            }
-            catch (Exception ex)
-            {
             }
         }
 

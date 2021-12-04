@@ -52,6 +52,20 @@ namespace QLSV_HTC
             cbSubscribes.ValueMember = "TENSERVER";
         }
 
+        private void getListKhoa()
+        {
+            String cmd = "Select * from Get_Khoa";
+            DataTable dataTable = new DataTable();
+            if (conn_publisher.State == ConnectionState.Closed)
+            {
+                conn_publisher.Open();
+            }
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd, conn_publisher);
+            dataAdapter.Fill(dataTable);
+            conn_publisher.Close();
+            Program.bds_dskhoa.DataSource = dataTable;
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if(txtUsername.Text.Trim() == "" || txtPassword.Text.Trim() == "")
@@ -105,6 +119,7 @@ namespace QLSV_HTC
         {
             if (connectToPublisher() == 0) return;
             getListSubscribes("select * from Get_Subscribes");
+            getListKhoa();
             cbSubscribes.SelectedIndex = 2;
             cbSubscribes.SelectedIndex = 1;
             cbSubscribes.SelectedIndex = 0;

@@ -13,7 +13,7 @@ namespace QLSV_HTC
     static class Program
     {
         public static SqlConnection conn = new SqlConnection();
-        public static String connectStr_publisher = @"Data Source=DESKTOP-ARJSH40\NGUYENMAI;Initial Catalog=QLSV_HTC;Integrated Security=True";
+        public static String connectStr_publisher = @"Data Source=DESKTOP-H44NOK6\SERVER;Initial Catalog=QLSV_HTC;Integrated Security=True";
         public static String connectStr;
 
         public static SqlDataReader reader;
@@ -37,6 +37,7 @@ namespace QLSV_HTC
         public static frmLogin f_login;
 
         public static BindingSource bds_dspm = new BindingSource();
+        public static BindingSource bds_dskhoa = new BindingSource();
 
         /// <summary>
         /// The main entry point for the application.
@@ -69,6 +70,29 @@ namespace QLSV_HTC
                 MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nXem lại username và password");
                 return 0;
             }
+        }
+
+        public static int GetConnection(String conStr)
+        {
+            if (Program.conn != null && Program.conn.State == ConnectionState.Open)
+            {
+                Program.conn.Close();
+            }
+            try
+            {
+                Program.conn.ConnectionString = conStr;
+                Program.conn.Open();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        public static String changeConnectStr(String serverName, String userName, String passWord)
+        {
+            return @"Data Source=" + serverName + ";Initial Catalog=" + Program.database + ";User ID=" + userName + ";password=" + passWord;
         }
 
         public static SqlDataReader ExecSqlDataReader(String cmd)

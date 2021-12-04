@@ -36,8 +36,7 @@ namespace QLSV_HTC.View
             this.SINHVIENTableAdapter.Fill(this.DSHP.SINHVIEN);
             // TODO: This line of code loads data into the 'DSHP.HOCPHI' table. You can move, or remove it, as needed.
             this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-            this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
-            // TODO: This line of code loads data into the 'DSHP.CT_DONGHOCPHI' table. You can move, or remove it, as needed.
+            this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
             this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
             this.CT_DONGHOCPHITableAdapter.Fill(this.DSHP.CT_DONGHOCPHI);
 
@@ -49,9 +48,9 @@ namespace QLSV_HTC.View
             gcHocPhi.Enabled = gcCTHP.Enabled = false;
             gvHocPhi.OptionsBehavior.ReadOnly = true;
             float total = 0;
-            for ( int i =0; i < bdsHocPhi.Count; i++)
+            for (int i = 0; i < bdsHocPhi.Count; i++)
             {
-                
+
                 /*for (int j = 0; j < bdsCTHP.Count; j++)
                 {
                     total += float.Parse(((DataRowView)bdsCTHP[j])[2].ToString());
@@ -60,28 +59,23 @@ namespace QLSV_HTC.View
             }
         }
 
-        private void sINHVIENBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsSV.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DSHP);
-        }
-
         private void txtMaSV_TextChanged(object sender, EventArgs e)
         {
             String cmd = "EXEC SP_CHECKID  @Code ='" + txtMaSV.Text + "' , @Type = 'MASV'";
             if (Program.ExecSqlNonQuery(cmd) != 0)
             {
                 bdsSV.Position = bdsSV.Find("MASV", txtMaSV.Text);
+
                 txtHo.Text = ((DataRowView)bdsSV[bdsSV.Position])["HO"].ToString();
                 txtTen.Text = ((DataRowView)bdsSV[bdsSV.Position])["TEN"].ToString();
                 txtMaLop.Text = ((DataRowView)bdsSV[bdsSV.Position])["MALOP"].ToString();
+
                 btnThem.Enabled = btnLamMoi.Enabled = btnPhucHoi.Enabled = true;
                 btnGhi.Enabled = btnHuy.Enabled = false;
                 gbTTHP.Enabled = false;
                 gbTTSV.Enabled = true;
                 gcHocPhi.Enabled = gcCTHP.Enabled = true;
-                if(bdsCTHP.Count >= 0)
+                if (bdsCTHP.Count >= 0)
                 {
                     contextMenuStrip1.Enabled = true;
                     btnThemCHTP.Enabled = btnXoaCTHP.Enabled = btnSuaCTHP.Enabled = btnPhucHoiCTHP.Enabled = true;
@@ -100,7 +94,7 @@ namespace QLSV_HTC.View
                 else
                 {
                     btnXoa.Enabled = btnSua.Enabled = false;
-                } 
+                }
             }
             else
             {
@@ -111,7 +105,7 @@ namespace QLSV_HTC.View
                 contextMenuStrip1.Enabled = false;
                 gcHocPhi.Enabled = gcCTHP.Enabled = false;
             }
-            
+
         }
 
 
@@ -148,7 +142,7 @@ namespace QLSV_HTC.View
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi xóa học phí. Bạn hãy xóa lại " + ex.Message, "", MessageBoxButtons.OK);
-                    this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+                    this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
                     bdsHocPhi.Position = vitriHP;
                     return;
                 }
@@ -215,7 +209,7 @@ namespace QLSV_HTC.View
                             {
                                 bdsHocPhi.EndEdit();
                                 this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                                this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+                                this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
                                 bdsHocPhi.Position = vitriHP;
                                 MessageBox.Show("Mã học phí đã tồi tại", "", MessageBoxButtons.OK);
                             }
@@ -249,7 +243,7 @@ namespace QLSV_HTC.View
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+            this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
             bdsHocPhi.Position = vitriHP;
             btnThem.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = false;
@@ -265,7 +259,7 @@ namespace QLSV_HTC.View
             try
             {
                 this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+                this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
             }
             catch (Exception ex)
             {
@@ -325,7 +319,7 @@ namespace QLSV_HTC.View
                 {
                     bdsCTHP.RemoveCurrent();
                     this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                    this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+                    this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
                     bdsHocPhi.Position = vitriHP;
                     this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                     this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);
@@ -342,7 +336,7 @@ namespace QLSV_HTC.View
 
         private void btnGhiCTHP_Click(object sender, EventArgs e)
         {
-           try
+            try
             {
                 DateTime ngayDong = DateTime.Parse(((DataRowView)bdsCTHP[this.bdsCTHP.Position])["NGAYDONG"].ToString());
                 String cmd = "EXEC SP_CHECKIDCTHP @NienKhoa ='" + cbbNienKhoa.Text + "', @HocKy ='" + cbbHocKy.SelectedItem.ToString() + "', @maSV = '" + txtMaSV.Text + "', @NgayDong = '" + ngayDong.ToShortDateString() + "'";
@@ -357,7 +351,7 @@ namespace QLSV_HTC.View
                                 {
                                     bdsCTHP.EndEdit();
                                     bdsCTHP.RemoveCurrent();
-                                    MessageBox.Show("Số tiền đươc phép đóng tối đa là "+ hocPhiDuocDong+"Đ !", "", MessageBoxButtons.OK);
+                                    MessageBox.Show("Số tiền đươc phép đóng tối đa là " + hocPhiDuocDong + "Đ !", "", MessageBoxButtons.OK);
                                     totalHPDaDong = 0;
                                 }
                                 else
@@ -365,19 +359,19 @@ namespace QLSV_HTC.View
                                     bdsCTHP.EndEdit();
                                     bdsCTHP.ResetCurrentItem();
                                     this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                                    this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+                                    this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
                                     bdsHocPhi.Position = vitriHP;
                                     this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                                     this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);
                                     totalHPDaDong = 0;
                                 }
-                                
+
                             }
                             else
                             {
                                 bdsCTHP.EndEdit();
                                 this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                                this.CT_DONGHOCPHITableAdapter.Fill(this.DSHP.CT_DONGHOCPHI); 
+                                this.CT_DONGHOCPHITableAdapter.Fill(this.DSHP.CT_DONGHOCPHI);
                                 bdsHocPhi.Position = vitriHP;
                                 bdsCTHP.Position = vitriCTHP;
                                 MessageBox.Show("Mã học phí đã tồi tại", "", MessageBoxButtons.OK);
@@ -389,7 +383,7 @@ namespace QLSV_HTC.View
                             bdsCTHP.EndEdit();
                             bdsCTHP.ResetCurrentItem();
                             this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                            this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
+                            this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
                             bdsHocPhi.Position = vitriHP;
                             this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                             this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);
@@ -438,7 +432,6 @@ namespace QLSV_HTC.View
                 MessageBox.Show("Lỗi Reload:" + ex.Message, "", MessageBoxButtons.OK);
             }
         }
-
         private void btnHuyCTHP_Click(object sender, EventArgs e)
         {
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnLamMoi.Enabled = btnPhucHoi.Enabled = true;
