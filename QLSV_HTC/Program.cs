@@ -25,12 +25,16 @@ namespace QLSV_HTC
         public static String database = "QLSV_HTC";
         public static String remotelogin = "HTKN";
         public static String remotepassword = "123456";
+        public static String remoteloginSV = "SV";
+        public static String remotepasswordSV = "123456";
 
         public static String m_loginDN = "";
         public static String passwordDN = "";
 
         public static String m_group = "";
         public static String m_hoTen = "";
+        public static String m_lop = "";
+
         public static int m_subscribes = 0;
 
         public static frmMain f_main;
@@ -67,7 +71,7 @@ namespace QLSV_HTC
             }
             catch (Exception e)
             {
-                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nXem lại username và password");
+                
                 return 0;
             }
         }

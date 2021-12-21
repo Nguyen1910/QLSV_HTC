@@ -71,6 +71,7 @@ namespace QLSV_HTC
             this.ID_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.Name_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.Group_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.bbtnBDTKCK = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
@@ -105,10 +106,11 @@ namespace QLSV_HTC
             this.bbtnReportDSLTC,
             this.bbtnDSSVDKLTC,
             this.bbtnBDHM,
-            this.bbtnPD});
+            this.bbtnPD,
+            this.bbtnBDTKCK});
             this.ribbon.LargeImages = this.Icon;
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 44;
+            this.ribbon.MaxItemId = 45;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -365,6 +367,7 @@ namespace QLSV_HTC
             this.ribbonPageGroup4.ItemLinks.Add(this.bbtnDSSVDKLTC);
             this.ribbonPageGroup4.ItemLinks.Add(this.bbtnBDHM);
             this.ribbonPageGroup4.ItemLinks.Add(this.bbtnPD);
+            this.ribbonPageGroup4.ItemLinks.Add(this.bbtnBDTKCK);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "Báo cáo";
             // 
@@ -428,6 +431,14 @@ namespace QLSV_HTC
             this.Group_StatusLabel.Name = "Group_StatusLabel";
             this.Group_StatusLabel.Size = new System.Drawing.Size(40, 17);
             this.Group_StatusLabel.Text = "Group";
+            // 
+            // bbtnBDTKCK
+            // 
+            this.bbtnBDTKCK.Caption = "Bảng điểm tông kết cuối khoá";
+            this.bbtnBDTKCK.Id = 44;
+            this.bbtnBDTKCK.ImageOptions.LargeImageIndex = 21;
+            this.bbtnBDTKCK.Name = "bbtnBDTKCK";
+            this.bbtnBDTKCK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnBDTKCK_ItemClick);
             // 
             // frmMain
             // 
@@ -502,5 +513,6 @@ namespace QLSV_HTC
         private DevExpress.XtraBars.BarButtonItem bbtnDSSVDKLTC;
         private DevExpress.XtraBars.BarButtonItem bbtnBDHM;
         private DevExpress.XtraBars.BarButtonItem bbtnPD;
+        private DevExpress.XtraBars.BarButtonItem bbtnBDTKCK;
     }
 }

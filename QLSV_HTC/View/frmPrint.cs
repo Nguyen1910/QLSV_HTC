@@ -18,6 +18,16 @@ namespace QLSV_HTC.View
             InitializeComponent();
         }
 
+        public void PrintBDTKCK(String maKhoa,String maLop,String tenLop,String khoaHoc)
+        {
+            rpBDTKCK report = new rpBDTKCK(maLop);
+            report.txtKhoa.Text = maKhoa;
+            report.txtLop.Text = tenLop;
+            report.txtKhoaHoc.Text = khoaHoc;
+            documentViewer1.DocumentSource = report;
+            report.CreateDocument();
+        }
+
         public void PrintDSLTC(String maKhoa, String nienKhoa, String hocKy)
         {
             rpDSLTC report = new rpDSLTC(nienKhoa, hocKy);

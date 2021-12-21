@@ -21,7 +21,7 @@ namespace QLSV_HTC.View
         private static BindingSource bds_dsltc = new BindingSource();
         private static BindingSource bds_dshk = new BindingSource();
         private static BindingSource bds_dsltcdk = new BindingSource();
-        private static BindingSource bds_dssv = new BindingSource();
+        
         public frmDangKy()
         {
             InitializeComponent();
@@ -29,11 +29,9 @@ namespace QLSV_HTC.View
 
         private void frmDangKy_Load(object sender, EventArgs e)
         {
-            getListSV();
-            cmbMaSV.DataSource = bds_dssv;
-            cmbMaSV.DisplayMember = "MASV";
-
-            cmbMaSV.Text = "";
+            txtMaSV.Text = Program.username;
+            txtTenSV.Text = Program.m_hoTen;
+            txtMaLop.Text = Program.m_lop;
 
             getListNienKhoa();
 
@@ -53,13 +51,13 @@ namespace QLSV_HTC.View
             cmbHocKy.SelectedIndex = 0;
             cmbHocKy.Text = cmbHocKy.Items[0].ToString();
 
-            getListLTC(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            getListLTC(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
 
-            getListLTCDK(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            getListLTCDK(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
         }
-        private void getListSV()
+        /*private void getListSV()
         {
-            String cmd = "select MASV, HO + ' ' + TEN AS TENSV, MALOP FROM dbo.SINHVIEN";
+            String cmd = "select * from Get_SinhVien_Info";
             DataTable dataTable = new DataTable();
             if (Program.conn.State == ConnectionState.Closed)
             {
@@ -69,11 +67,11 @@ namespace QLSV_HTC.View
             dataAdapter.Fill(dataTable);
             Program.conn.Close();
             bds_dssv.DataSource = dataTable;
-        }
+        }*/
 
         private void getListHocKy(String nienKhoa)
         {
-            String cmd = "select distinct HOCKY from dbo.LOPTINCHI WHERE NIENKHOA = '" + nienKhoa + "'";
+            String cmd = "exec SP_GETHOCKY '" + nienKhoa + "'";
             DataTable dataTable = new DataTable();
             if (Program.conn.State == ConnectionState.Closed)
             {
@@ -83,12 +81,11 @@ namespace QLSV_HTC.View
             dataAdapter.Fill(dataTable);
             Program.conn.Close();
             bds_dshk.DataSource = dataTable;
-
         }
 
         private void getListNienKhoa()
         {
-            String cmd = "select distinct NIENKHOA from dbo.LOPTINCHI";
+            String cmd = "select * from Get_NienKhoa";
             DataTable dataTable = new DataTable();
             if (Program.conn.State == ConnectionState.Closed)
             {
@@ -143,119 +140,128 @@ namespace QLSV_HTC.View
             cmbHocKy.DisplayMember = "HOCKY";
             cmbHocKy.ValueMember = "HOCKY";
 
-            getListLTC(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-            getListLTCDK(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            getListLTC(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            getListLTCDK(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
         }
 
         private void cmbHocKy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getListLTC(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-            getListLTCDK(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            getListLTC(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            getListLTCDK(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
         }
 
         private void btnLuuDK_Click(object sender, EventArgs e)
         {
-            if (cmbMaSV.Text.Length == 0)
+            if (txtMaSV.Text.Length == 0)
             {
                 MessageBox.Show("Vui lòng nhập mã sinh viên", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-
             int[] selectedRows = LTCGridView.GetSelectedRows();
-            int isError = 0;
-            foreach (int i in selectedRows)
+            if(selectedRows.Length == 0)
             {
-                string sql = "SELECT COUNT(MALTC) FROM dbo.DANGKY WHERE MALTC = '" + LTCGridView.GetRowCellValue(i, "MALTC") + "' AND MASV = '" + cmbMaSV.Text.Trim() + "'";
-                Program.reader = Program.ExecSqlDataReader(sql);
-                if (Program.reader == null) return;
-                Program.reader.Read();
-
-                if (Program.reader.GetInt32(0) == 0)
-                {
-                    Program.reader.Close();
-                    sql = "INSERT INTO dbo.DANGKY(MALTC,MASV,HUYDANGKY) VALUES ('" + LTCGridView.GetRowCellValue(i, "MALTC") + "','" + cmbMaSV.Text.Trim() + "','" + 0 + "');";
-                    isError = Program.ExecSqlNonQuery(sql);
-                    if (isError != 0)
-                    {
-                        MessageBox.Show("Lỗi ! Không thể đăng ký bằng cách tạo mới ", "", MessageBoxButtons.OK);
-                        break;
-                    }
-                }
-                else
-                {
-                    Program.reader.Close();
-                    sql = "UPDATE dbo.DANGKY SET HUYDANGKY = 0 WHERE MALTC = '" + LTCGridView.GetRowCellValue(i, "MALTC") + "' AND MASV = '" + cmbMaSV.Text.Trim() + "';";
-                    isError = Program.ExecSqlNonQuery(sql);
-                    if (isError != 0)
-                    {
-                        MessageBox.Show("Lỗi ! Không thể đăng ký bằng cách cập nhật", "", MessageBoxButtons.OK);
-                        break;
-                    }
-                }
-
+                MessageBox.Show("Vui lòng chọn tín chỉ đăng ký ! ", "", MessageBoxButtons.OK);
+                return;
             }
-
-            if (isError == 0)
+            try
             {
-                getListLTC(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-                getListLTCDK(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+                DataTable dt = new DataTable();
+                dt.Columns.Add("MALTC", (typeof(int)));
+                dt.Columns.Add("MASV", (typeof(string)));
+                dt.Columns.Add("HUYDANGKY", (typeof(bool)));
+                foreach (int i in selectedRows)
+                {
+                    dt.Rows.Add(((DataRowView)bds_dsltc[i])["MALTC"], txtMaSV.Text.Trim(), 0);
+                }
+                SqlParameter para = new SqlParameter();
+                para.SqlDbType = SqlDbType.Structured;
+                para.TypeName = "dbo.TYPE_DANGKYTC";
+                para.ParameterName = "@DKTC";
+                para.Value = dt;
+                Program.GetConnection();
+                SqlCommand sqlCommand = new SqlCommand("SP_UPDATEDKLTC", Program.conn);
+                sqlCommand.Parameters.Clear();
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(para);
+                sqlCommand.ExecuteNonQuery(); 
+                getListLTC(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+                getListLTCDK(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
                 MessageBox.Show("Đăng ký thành công ! ", "", MessageBoxButtons.OK);
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Đăng ký thất bại ! Lỗi : "+ ex.Message, "", MessageBoxButtons.OK);
+            }            
         }
 
         private void btnHuyDangKy_Click(object sender, EventArgs e)
         {
-            int[] selectedRows = DKGridView.GetSelectedRows();
-            int isError = 0;
-            foreach (int i in selectedRows)
+            if (txtMaSV.Text.Length == 0)
             {
-                string sql = "UPDATE dbo.DANGKY SET HUYDANGKY = 1 WHERE MALTC = '" + DKGridView.GetRowCellValue(i, "MALTC") + "' AND MASV = '" + cmbMaSV.Text.Trim() + "';";
-                isError = Program.ExecSqlNonQuery(sql);
-                if (isError != 0)
-                {
-                    MessageBox.Show("Lỗi ! Không thể huỷ đăng ký ", "", MessageBoxButtons.OK);
-                    break;
-                }
+                MessageBox.Show("Vui lòng nhập mã sinh viên", "Thông báo", MessageBoxButtons.OK);
+                return;
             }
-
-            if (isError == 0)
+            int[] selectedRows = DKGridView.GetSelectedRows();
+            if (selectedRows.Length == 0)
             {
-                getListLTC(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-                getListLTCDK(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+                MessageBox.Show("Vui lòng chọn tín chỉ để huỷ đăng ký ! ", "", MessageBoxButtons.OK);
+                return;
+            }
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("MALTC", (typeof(int)));
+                dt.Columns.Add("MASV", (typeof(string)));
+                dt.Columns.Add("HUYDANGKY", (typeof(bool)));
+                foreach (int i in selectedRows)
+                {
+                    dt.Rows.Add(((DataRowView)bds_dsltcdk[i])["MALTC"], txtMaSV.Text.Trim(), 1);
+                }
+                SqlParameter para = new SqlParameter();
+                para.SqlDbType = SqlDbType.Structured;
+                para.TypeName = "dbo.TYPE_DANGKYTC";
+                para.ParameterName = "@DKTC";
+                para.Value = dt;
+                Program.GetConnection();
+                SqlCommand sqlCommand = new SqlCommand("SP_UPDATEDKLTC", Program.conn);
+                sqlCommand.Parameters.Clear();
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(para);
+                sqlCommand.ExecuteNonQuery();
+                getListLTC(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+                getListLTCDK(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
                 MessageBox.Show("Huỷ đăng ký thành công ! ", "", MessageBoxButtons.OK);
             }
-        }
-
-        private void cmbMaSV_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void cmbMaSV_TextChanged(object sender, EventArgs e)
-        {
-            string sql = "SELECT COUNT(MASV) FROM dbo.SINHVIEN WHERE MASV = '" + cmbMaSV.Text.Trim() + "'";
-            Program.reader = Program.ExecSqlDataReader(sql);
-            if (Program.reader == null) return;
-            Program.reader.Read();
-
-            if (Program.reader.GetInt32(0) == 0)
+            catch (Exception ex)
             {
-                Program.reader.Close();
-                txtTenSV.Text = "";
-                txtMaLop.Text = "";
-
-                getListLTC(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-                getListLTCDK(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+                MessageBox.Show("Huỷ đăng ký thất bại ! Lỗi : " + ex.Message, "", MessageBoxButtons.OK);
             }
-            else
+        }
+
+        private void txtMaSV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtMaSV_TextChanged(object sender, EventArgs e)
+        {
+            /*string sql = "exec SP_CHECKMASV '" + txtMaSV.Text.Trim() + "',''";
+            int isError = Program.ExecSqlNonQuery(sql);
+            if (isError == 1)
             {
-                Program.reader.Close();
-                bds_dssv.Position = bds_dssv.Find("MASV", cmbMaSV.Text);
+                bds_dssv.Position = bds_dssv.Find("MASV", txtMaSV.Text);
                 txtTenSV.Text = ((DataRowView)bds_dssv[bds_dssv.Position])["TENSV"].ToString();
                 txtMaLop.Text = ((DataRowView)bds_dssv[bds_dssv.Position])["MALOP"].ToString();
 
-                getListLTC(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-                getListLTCDK(cmbMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-            }
+                getListLTC(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+                getListLTCDK(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            }else
+            {
+                txtTenSV.Text = "";
+                txtMaLop.Text = "";
+
+                getListLTC(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+                getListLTCDK(txtMaSV.Text.Trim(), cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
+            }*/
         }
     }
 }

@@ -13,6 +13,7 @@ namespace QLSV_HTC
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
         private static SqlConnection conn_publisher = new SqlConnection();
+        private static BindingSource bds_dssv = new BindingSource();
         public frmLogin()
         {
             InitializeComponent();
@@ -66,6 +67,20 @@ namespace QLSV_HTC
             Program.bds_dskhoa.DataSource = dataTable;
         }
 
+        private void getListSV()
+        {
+            String cmd = "select * from Get_SinhVien_Info";
+            DataTable dataTable = new DataTable();
+            if (Program.conn.State == ConnectionState.Closed)
+            {
+                Program.conn.Open();
+            }
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd, Program.conn);
+            dataAdapter.Fill(dataTable);
+            Program.conn.Close();
+            bds_dssv.DataSource = dataTable;
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if(txtUsername.Text.Trim() == "" || txtPassword.Text.Trim() == "")
@@ -75,8 +90,35 @@ namespace QLSV_HTC
             }
             Program.m_login = txtUsername.Text;
             Program.password = txtPassword.Text;
-            if (Program.GetConnection() == 0) return;
+            if (Program.GetConnection() == 0)
+            {
+                Program.m_login = Program.remoteloginSV;
+                Program.password = Program.remotepasswordSV;
+                Program.GetConnection();
+                getListSV();
+                String sql = "exec SP_CHECKMASV '" + txtUsername.Text + "','"+ txtPassword.Text +"'";
+                int isError = Program.ExecSqlNonQuery(sql);
+                if (isError == 1)
+                {
+                    bds_dssv.Position = bds_dssv.Find("MASV", txtUsername.Text);
+                    Program.username = ((DataRowView)bds_dssv[bds_dssv.Position])["MASV"].ToString();
+                    Program.m_hoTen = ((DataRowView)bds_dssv[bds_dssv.Position])["TENSV"].ToString();
+                    Program.m_lop = ((DataRowView)bds_dssv[bds_dssv.Position])["MALOP"].ToString();
+                    Program.m_group = "SV";
 
+                    Program.conn.Close();
+
+                    Program.f_main.infoUser_Load(Program.username, Program.m_hoTen, Program.m_group);
+                    Program.f_login.Hide();
+                    Program.f_main.Show();
+
+                    return;
+                }
+                Program.m_login = "";
+                Program.password = "";
+                MessageBox.Show("Sai Username hay Password !");
+                return;
+            }
             Program.m_subscribes = cbSubscribes.SelectedIndex;
             Program.m_loginDN = Program.m_login;
             Program.passwordDN = Program.password;

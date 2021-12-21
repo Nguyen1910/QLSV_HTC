@@ -36,7 +36,7 @@ namespace QLSV_HTC.View
             this.SINHVIENTableAdapter.Fill(this.DSHP.SINHVIEN);
             // TODO: This line of code loads data into the 'DSHP.HOCPHI' table. You can move, or remove it, as needed.
             this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-            this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+            this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
             this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
             this.CT_DONGHOCPHITableAdapter.Fill(this.DSHP.CT_DONGHOCPHI);
 
@@ -142,7 +142,7 @@ namespace QLSV_HTC.View
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi xóa học phí. Bạn hãy xóa lại " + ex.Message, "", MessageBoxButtons.OK);
-                    this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+                    this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
                     bdsHocPhi.Position = vitriHP;
                     return;
                 }
@@ -209,7 +209,7 @@ namespace QLSV_HTC.View
                             {
                                 bdsHocPhi.EndEdit();
                                 this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                                this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+                                this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
                                 bdsHocPhi.Position = vitriHP;
                                 MessageBox.Show("Mã học phí đã tồi tại", "", MessageBoxButtons.OK);
                             }
@@ -243,7 +243,7 @@ namespace QLSV_HTC.View
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+            this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
             bdsHocPhi.Position = vitriHP;
             btnThem.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = false;
@@ -259,7 +259,7 @@ namespace QLSV_HTC.View
             try
             {
                 this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+                this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
             }
             catch (Exception ex)
             {
@@ -319,7 +319,7 @@ namespace QLSV_HTC.View
                 {
                     bdsCTHP.RemoveCurrent();
                     this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                    this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+                    this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
                     bdsHocPhi.Position = vitriHP;
                     this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                     this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);
@@ -359,7 +359,7 @@ namespace QLSV_HTC.View
                                     bdsCTHP.EndEdit();
                                     bdsCTHP.ResetCurrentItem();
                                     this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                                    this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+                                    this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
                                     bdsHocPhi.Position = vitriHP;
                                     this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                                     this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);
@@ -383,7 +383,7 @@ namespace QLSV_HTC.View
                             bdsCTHP.EndEdit();
                             bdsCTHP.ResetCurrentItem();
                             this.HOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
-                            this.HOCPHITableAdapter.FillDetail(this.DSHP.HOCPHI);
+                            this.HOCPHITableAdapter.Fill(this.DSHP.HOCPHI);
                             bdsHocPhi.Position = vitriHP;
                             this.CT_DONGHOCPHITableAdapter.Connection.ConnectionString = Program.connectStr;
                             this.CT_DONGHOCPHITableAdapter.Update(this.DSHP.CT_DONGHOCPHI);

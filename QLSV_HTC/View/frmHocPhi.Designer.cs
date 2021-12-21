@@ -88,6 +88,12 @@ namespace QLSV_HTC.View
             this.colHOCPHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSoTienDaDong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSoTienCanDong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMASV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNIENKHOA1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHOCKY1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHOCPHI1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHOCPHIDADONG = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHOCPHICANDONG = new DevExpress.XtraGrid.Columns.GridColumn();
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
@@ -269,6 +275,13 @@ namespace QLSV_HTC.View
             // 
             // gvHocPhi
             // 
+            this.gvHocPhi.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMASV,
+            this.colNIENKHOA1,
+            this.colHOCKY1,
+            this.colHOCPHI1,
+            this.colHOCPHIDADONG,
+            this.colHOCPHICANDONG});
             this.gvHocPhi.CustomizationFormBounds = new System.Drawing.Rectangle(677, 502, 252, 266);
             this.gvHocPhi.DetailHeight = 284;
             this.gvHocPhi.GridControl = this.gcHocPhi;
@@ -662,6 +675,51 @@ namespace QLSV_HTC.View
             this.colSoTienCanDong.OptionsColumn.ReadOnly = true;
             this.colSoTienCanDong.Width = 81;
             // 
+            // colMASV
+            // 
+            this.colMASV.FieldName = "MASV";
+            this.colMASV.Name = "colMASV";
+            this.colMASV.Visible = true;
+            this.colMASV.VisibleIndex = 0;
+            // 
+            // colNIENKHOA1
+            // 
+            this.colNIENKHOA1.FieldName = "NIENKHOA";
+            this.colNIENKHOA1.Name = "colNIENKHOA1";
+            this.colNIENKHOA1.Visible = true;
+            this.colNIENKHOA1.VisibleIndex = 1;
+            // 
+            // colHOCKY1
+            // 
+            this.colHOCKY1.FieldName = "HOCKY";
+            this.colHOCKY1.Name = "colHOCKY1";
+            this.colHOCKY1.Visible = true;
+            this.colHOCKY1.VisibleIndex = 2;
+            // 
+            // colHOCPHI1
+            // 
+            this.colHOCPHI1.FieldName = "HOCPHI";
+            this.colHOCPHI1.Name = "colHOCPHI1";
+            this.colHOCPHI1.Visible = true;
+            this.colHOCPHI1.VisibleIndex = 3;
+            // 
+            // colHOCPHIDADONG
+            // 
+            this.colHOCPHIDADONG.FieldName = "HOCPHIDADONG";
+            this.colHOCPHIDADONG.Name = "colHOCPHIDADONG";
+            this.colHOCPHIDADONG.Visible = true;
+            this.colHOCPHIDADONG.VisibleIndex = 4;
+            // 
+            // colHOCPHICANDONG
+            // 
+            this.colHOCPHICANDONG.Caption = "HOCPHICANDONG";
+            this.colHOCPHICANDONG.FieldName = "colHOCPHICANDONG";
+            this.colHOCPHICANDONG.Name = "colHOCPHICANDONG";
+            this.colHOCPHICANDONG.UnboundExpression = "[HOCPHI] - [HOCPHIDADONG]";
+            this.colHOCPHICANDONG.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.colHOCPHICANDONG.Visible = true;
+            this.colHOCPHICANDONG.VisibleIndex = 5;
+            // 
             // frmHocPhi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -752,5 +810,11 @@ namespace QLSV_HTC.View
         private DevExpress.XtraGrid.Columns.GridColumn colHOCPHI;
         private DevExpress.XtraGrid.Columns.GridColumn colSoTienDaDong;
         private DevExpress.XtraGrid.Columns.GridColumn colSoTienCanDong;
+        private DevExpress.XtraGrid.Columns.GridColumn colMASV;
+        private DevExpress.XtraGrid.Columns.GridColumn colNIENKHOA1;
+        private DevExpress.XtraGrid.Columns.GridColumn colHOCKY1;
+        private DevExpress.XtraGrid.Columns.GridColumn colHOCPHI1;
+        private DevExpress.XtraGrid.Columns.GridColumn colHOCPHIDADONG;
+        private DevExpress.XtraGrid.Columns.GridColumn colHOCPHICANDONG;
     }
 }

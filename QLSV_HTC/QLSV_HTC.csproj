@@ -71,6 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DS.cs">
+      <DependentUpon>DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +92,12 @@
     </Compile>
     <Compile Include="View\frmBDHM.Designer.cs">
       <DependentUpon>frmBDHM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmBDTKCK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmBDTKCK.Designer.cs">
+      <DependentUpon>frmBDTKCK.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmDangKy.cs">
       <SubType>Form</SubType>
@@ -194,6 +203,12 @@
     <Compile Include="View\rpBDHM.Designer.cs">
       <DependentUpon>rpBDHM.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\rpBDTKCK.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\rpBDTKCK.Designer.cs">
+      <DependentUpon>rpBDTKCK.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\rpDSLTC.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -220,6 +235,9 @@
     </Compile>
     <EmbeddedResource Include="View\frmBDHM.resx">
       <DependentUpon>frmBDHM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmBDTKCK.resx">
+      <DependentUpon>frmBDTKCK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmDangKy.resx">
       <DependentUpon>frmDangKy.cs</DependentUpon>
@@ -265,6 +283,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\frmNhapDiem.resx">
+      <DependentUpon>frmNhapDiem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmPDSV.resx">
       <DependentUpon>frmPDSV.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\rpBDHM.resx">
       <DependentUpon>rpBDHM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\rpBDTKCK.resx">
+      <DependentUpon>rpBDTKCK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\rpDSLTC.resx">
       <DependentUpon>rpDSLTC.cs</DependentUpon>

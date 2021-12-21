@@ -173,7 +173,8 @@ namespace QLSV_HTC
 
         private void btnSignOut_ItemClick(object sender, ItemClickEventArgs e)
         {
-         
+            Program.f_main.Close();
+            Program.f_login.Show();
         }
 
         private void bbtnDKLopTC_ItemClick(object sender, ItemClickEventArgs e)
@@ -243,6 +244,18 @@ namespace QLSV_HTC
             else
             {
                 frmPDSV frm = new frmPDSV();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void bbtnBDTKCK_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExits(typeof(frmHocPhi));
+            if (f != null) f.Activate();
+            else
+            {
+                frmBDTKCK frm = new frmBDTKCK();
                 frm.MdiParent = this;
                 frm.Show();
             }

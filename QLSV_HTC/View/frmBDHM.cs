@@ -186,5 +186,11 @@ namespace QLSV_HTC.View
             cmbNhom.DataSource = bds_dsnhom;
             cmbNhom.DisplayMember = "NHOM";
         }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
     }
 }

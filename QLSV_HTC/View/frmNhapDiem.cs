@@ -18,51 +18,55 @@ namespace QLSV_HTC.View
         private static BindingSource bds_dsnk = new BindingSource();
         private static BindingSource bds_dshk = new BindingSource();
         private static BindingSource bds_dsnhom = new BindingSource();
-        private static BindingSource bds_dsdk = new BindingSource();
         public frmNhapDiem()
         {
             InitializeComponent();
         }
 
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            getListND(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim(), cmbMaMH.Text.Trim(), cmbNhom.Text.Trim());
-
-            pnlInput.Enabled = true;
-
-        }
-
         private void btnGhi_Click(object sender, EventArgs e)
         {
-            int countRows = ((DataTable)bds_dsdk.DataSource).Rows.Count; ;
-            int isError = 0;
-            for (int i = 0; i < countRows; i++)
+            try
             {
-                String sql = "UPDATE dbo.DANGKY SET DIEM_CC = " + NDGridView.GetRowCellValue(i, "DIEM_CC") +
-                    ", DIEM_GK = " + NDGridView.GetRowCellValue(i, "DIEM_GK") + ", DIEM_CK = " + NDGridView.GetRowCellValue(i, "DIEM_CK") +
-                    " WHERE MALTC = '" + NDGridView.GetRowCellValue(i, "MALTC") + "' AND MASV = '" + NDGridView.GetRowCellValue(i, "MASV") + "';";
-                isError = Program.ExecSqlNonQuery(sql);
-                if (isError != 0)
+                DataTable dt = new DataTable();
+                dt.Columns.Add("MALTC", (typeof(int)));
+                dt.Columns.Add("MASV", (typeof(string)));
+                dt.Columns.Add("DIEM_CC", (typeof(int)));
+                dt.Columns.Add("DIEM_GK", (typeof(float)));
+                dt.Columns.Add("DIEM_CK", (typeof(float)));
+                for (int i = 0; i < bds_loadDiem.Count; i++)
                 {
-                    MessageBox.Show("Lỗi ! Không thể cập nhật điểm ", "", MessageBoxButtons.OK);
-                    break;
+                    dt.Rows.Add(((DataRowView)bds_loadDiem[i])["MALTC"], ((DataRowView)bds_loadDiem[i])["MASV"], ((DataRowView)bds_loadDiem[i])["DIEM_CC"], ((DataRowView)bds_loadDiem[i])["DIEM_GK"], ((DataRowView)bds_loadDiem[i])["DIEM_CK"]);
                 }
-            }
+                SqlParameter para = new SqlParameter();
+                para.SqlDbType = SqlDbType.Structured;
+                para.TypeName = "dbo.TYPE_DANGKY";
+                para.ParameterName = "@DIEMTHI";
+                para.Value = dt;
+                Program.GetConnection();
 
-
-            if (isError == 0)
-            {
-                getListND(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim(), cmbMaMH.Text.Trim(), cmbNhom.Text.Trim());
+                SqlCommand sqlCommand = new SqlCommand("SP_UPDATEDIEM", Program.conn);
+                sqlCommand.Parameters.Clear();
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(para);
+                sqlCommand.ExecuteNonQuery();
+                this.loadDiemTableAdapter.Connection.ConnectionString = Program.connectStr;
+                this.loadDiemTableAdapter.Fill(this.DS.SP_LOADNHAPDIEM, (int)((DataRowView)bds_loadDiem[bds_loadDiem.Position])["MALTC"]);
                 MessageBox.Show("Nhập điểm thành công ! ", "", MessageBoxButtons.OK);
+                pnlInput.Enabled = true;
             }
-
-            pnlInput.Enabled = true;
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi nhập điểm ! " + ex.Message, "", MessageBoxButtons.OK);
+                this.loadDiemTableAdapter.Connection.ConnectionString = Program.connectStr;
+                this.loadDiemTableAdapter.Fill(this.DS.SP_LOADNHAPDIEM, (int)((DataRowView)bds_loadDiem[bds_loadDiem.Position])["MALTC"]);
+            }
         }
 
         private void frmNhapDiem_Load(object sender, EventArgs e)
         {
+            btnGhi.Enabled = false;
+            btnBatDau.Enabled = false;
+            btnLoad.Enabled = true;
             loadForm();
             if (Program.m_subscribes < 2)
             {
@@ -112,82 +116,33 @@ namespace QLSV_HTC.View
             cmbHocKy.DisplayMember = "HOCKY";
             cmbHocKy.ValueMember = "HOCKY";
 
-
             getListMH(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-
-            cmbMaMH.DataSource = bds_dsmh;
-            cmbMaMH.DisplayMember = "MAMH";
-            cmbMaMH.ValueMember = "MAMH";
-
-            getListNhom(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim(), cmbMaMH.Text.Trim());
-
-            cmbNhom.DataSource = bds_dsnhom;
-            cmbNhom.DisplayMember = "NHOM";
-            cmbNhom.ValueMember = "NHOM";
 
         }
 
         private void cmbHocKy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getListMH(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-
-            cmbMaMH.DataSource = bds_dsmh;
-            cmbMaMH.DisplayMember = "TENMH";
-            cmbMaMH.ValueMember = "MAMH";
-
-            getListNhom(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim(), cmbMaMH.Text.Trim());
-
-            cmbNhom.DataSource = bds_dsnhom;
-            cmbNhom.DisplayMember = "NHOM";
-            cmbNhom.ValueMember = "NHOM";
-
         }
 
-        private void cmbNhom_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbMaMH_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            getListNhom(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim(), cmbMaMH.Text.Trim());
-
-            cmbNhom.DataSource = bds_dsnhom;
-            cmbNhom.DisplayMember = "NHOM";
-            cmbNhom.ValueMember = "NHOM";
-
-        }
 
         private void btnBatDau_Click(object sender, EventArgs e)
         {
-            getListND(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim(), cmbMaMH.Text.Trim(), cmbNhom.Text.Trim());
-            btnGhi.Enabled = true;
-            btnHuy.Enabled = true;
-            pnlInput.Enabled = false;
-        }
-
-        private void getListND(String nienKhoa, String hocKy, String maMH, String nhom)
-        {
-            String cmd = "exec SP_LOADNHAPDIEM '" + nienKhoa + "','" + hocKy + "','" + maMH + "','" + nhom + "'";
-            DataTable dataTable = new DataTable();
-            if (Program.conn.State == ConnectionState.Closed)
+            if (bds_loadLTC.Position >= 0)
             {
-                Program.conn.Open();
+                this.loadDiemTableAdapter.Connection.ConnectionString = Program.connectStr;
+                this.loadDiemTableAdapter.Fill(this.DS.SP_LOADNHAPDIEM, (int)((DataRowView)bds_loadLTC[bds_loadLTC.Position])["MALTC"]);
+                btnGhi.Enabled = true;
             }
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd, Program.conn);
-            dataAdapter.Fill(dataTable);
-            Program.conn.Close();
-            bds_dsdk.DataSource = dataTable;
-            NDGridControl.DataSource = bds_dsdk;
-            NDGridView.Columns["MALTC"].Visible = false;
-            NDGridView.Columns["MASV"].OptionsColumn.ReadOnly = true;
-            NDGridView.Columns["TENSV"].OptionsColumn.ReadOnly = true;
-            NDGridView.Columns["DIEM_HM"].OptionsColumn.ReadOnly = true;
+            else
+            {
+                MessageBox.Show("Vui lòng chọn tín chỉ để nhập điểm", "Thông báo", MessageBoxButtons.OK);
+            }
+            
         }
 
-        private void getListMH(String nienKhoa, String hocKy) //, TENMH = (SELECT TENMH FROM dbo.MONHOC WHERE ltc.MAMH = MAMH)
+        private void getListMH(String nienKhoa, String hocKy)
         {
-            String cmd = "select distinct ltc.MAMH from dbo.LOPTINCHI ltc WHERE ltc.NIENKHOA = '" + nienKhoa + "' AND ltc.HOCKY = '" + hocKy + "'";
+            String cmd = "exec SP_GETMONHOC '" + nienKhoa + "','" + hocKy + "'";
             DataTable dataTable = new DataTable();
             if (Program.conn.State == ConnectionState.Closed)
             {
@@ -201,7 +156,7 @@ namespace QLSV_HTC.View
 
         private void getListHocKy(String nienKhoa)
         {
-            String cmd = "select distinct HOCKY from dbo.LOPTINCHI WHERE NIENKHOA = '" + nienKhoa + "'";
+            String cmd = "exec SP_GETHOCKY '" + nienKhoa + "'";
             DataTable dataTable = new DataTable();
             if (Program.conn.State == ConnectionState.Closed)
             {
@@ -216,7 +171,7 @@ namespace QLSV_HTC.View
 
         private void getListNienKhoa()
         {
-            String cmd = "select distinct NIENKHOA from dbo.LOPTINCHI";
+            String cmd = "select * from Get_NienKhoa";
             DataTable dataTable = new DataTable();
             if (Program.conn.State == ConnectionState.Closed)
             {
@@ -231,7 +186,7 @@ namespace QLSV_HTC.View
 
         private void getListNhom(String nienKhoa, String hocKy, String maMH)
         {
-            String cmd = "select distinct NHOM from dbo.LOPTINCHI WHERE (NIENKHOA = '" + nienKhoa + "' AND  HOCKY = '" + hocKy + "') AND MAMH = '" + maMH + "'";
+            String cmd = "exec SP_GETNHOM '" + nienKhoa + "','" + hocKy + "','" + maMH + "'";
             DataTable dataTable = new DataTable();
             if (Program.conn.State == ConnectionState.Closed)
             {
@@ -245,7 +200,6 @@ namespace QLSV_HTC.View
 
         private void loadForm()
         {
-
             cmbKhoa.DataSource = Program.bds_dskhoa;
             cmbKhoa.DisplayMember = "TENKHOA";
             cmbKhoa.ValueMember = "TENSERVER";
@@ -256,8 +210,6 @@ namespace QLSV_HTC.View
             cmbNienKhoa.DisplayMember = "NIENKHOA";
             cmbNienKhoa.ValueMember = "NIENKHOA";
 
-            cmbNienKhoa.SelectedIndex = 0;
-            cmbNienKhoa.Text = cmbNienKhoa.Items[0].ToString();
 
             getListHocKy(cmbNienKhoa.Text.Trim());
 
@@ -265,29 +217,25 @@ namespace QLSV_HTC.View
             cmbHocKy.DisplayMember = "HOCKY";
             cmbHocKy.ValueMember = "HOCKY";
 
-            cmbHocKy.SelectedIndex = 0;
-            cmbHocKy.Text = cmbHocKy.Items[0].ToString();
-
             getListMH(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim());
-
-            cmbMaMH.DataSource = bds_dsmh;
-            cmbMaMH.DisplayMember = "TENMH";
-            cmbMaMH.ValueMember = "MAMH";
-
-            cmbMaMH.SelectedIndex = 0;
-            cmbMaMH.Text = cmbMaMH.Items[0].ToString();
-
-            getListNhom(cmbNienKhoa.Text.Trim(), cmbHocKy.Text.Trim(), cmbMaMH.Text.Trim());
-
-            cmbNhom.DataSource = bds_dsnhom;
-            cmbNhom.DisplayMember = "NHOM";
-            cmbNhom.ValueMember = "NHOM";
-
-            cmbNhom.SelectedIndex = 0;
-            cmbNhom.Text = cmbNhom.Items[0].ToString();
-
         }
 
-
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.loadLTCTableAdapter.Connection.ConnectionString = Program.connectStr;
+                this.loadLTCTableAdapter.Fill(this.DS.SP_LOADNDLTC, cmbNienKhoa.Text.Trim(), Int32.Parse(cmbHocKy.Text.Trim()));
+                btnBatDau.Enabled = true;
+                btnGhi.Enabled = false;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi !"+ ex.Message,"Thông báo",MessageBoxButtons.OK);
+                btnBatDau.Enabled = false;
+                btnGhi.Enabled = false;
+            }
+            
+        }
     }
 }
