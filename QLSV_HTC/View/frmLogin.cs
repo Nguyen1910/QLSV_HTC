@@ -89,9 +89,20 @@ namespace QLSV_HTC
                 return;
             }
             Program.m_login = txtUsername.Text;
-            Program.password = txtPassword.Text;
+            Program.password = txtPassword.Text; 
+            Program.m_subscribes = cbSubscribes.SelectedIndex;
+            if (Program.m_login.Equals(Program.remoteloginSV) & Program.password.Equals(Program.remotepasswordSV))
+            {
+                MessageBox.Show("Sai Username hay Password !");
+                return;
+            }
             if (Program.GetConnection() == 0)
             {
+                if(Program.m_subscribes == 2)
+                {
+                    MessageBox.Show("Sai Username hay Password !");
+                    return;
+                }
                 Program.m_login = Program.remoteloginSV;
                 Program.password = Program.remotepasswordSV;
                 Program.GetConnection();
@@ -119,7 +130,6 @@ namespace QLSV_HTC
                 MessageBox.Show("Sai Username hay Password !");
                 return;
             }
-            Program.m_subscribes = cbSubscribes.SelectedIndex;
             Program.m_loginDN = Program.m_login;
             Program.passwordDN = Program.password;
             String cmd = "exec SP_DANGNHAP '"+Program.m_loginDN+"'";
